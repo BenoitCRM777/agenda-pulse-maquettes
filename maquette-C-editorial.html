@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maquette C - Layout Editorial Audacieux | Agenda Pulse</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: #1f2937;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --bleu-primaire: #1e40af;
+            --orange-secondaire: #f59e0b;
+            --cyan-accent: #06b6d4;
+            --gray-dark: #64748b;
+        }
+
+        /* HEADER MINIMAL */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem 4rem;
+            z-index: 1000;
+            background: transparent;
+            transition: all 0.5s;
+        }
+
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 1rem 4rem;
+            box-shadow: 0 2px 30px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-editorial {
+            font-size: 2rem;
+            font-weight: 900;
+            color: white;
+            transition: color 0.5s;
+        }
+
+        header.scrolled .logo-editorial {
+            color: var(--bleu-primaire);
+        }
+
+        .nav-minimal {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .nav-minimal a {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.125rem;
+            transition: all 0.3s;
+        }
+
+        .nav-links-editorial {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links-editorial li {
+            margin: 0;
+        }
+
+        .nav-links-editorial a {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.125rem;
+            transition: all 0.3s;
+        }
+
+        header.scrolled .nav-links-editorial a {
+            color: var(--bleu-primaire);
+        }
+
+        .nav-links-editorial a:hover {
+            color: var(--orange-secondaire);
+        }
+
+        header.scrolled .nav-minimal a {
+            color: var(--gray-dark);
+        }
+
+        .nav-minimal a:hover {
+            color: var(--orange-secondaire);
+        }
+
+        .btn-editorial {
+            padding: 1rem 2.5rem;
+            background: var(--orange-secondaire);
+            color: white;
+            border-radius: 999px;
+            font-weight: 800;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-editorial:hover {
+            background: #d97706;
+            transform: scale(1.05);
+        }
+
+        /* HERO SPLIT VERTICAL */
+        .hero-split {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 40% 60%;
+            position: relative;
+        }
+
+        .hero-split-left {
+            background: linear-gradient(135deg, var(--bleu-primaire) 0%, #0f172a 100%);
+            color: white;
+            padding: 10rem 4rem 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-split-left::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.1) 0%, transparent 70%);
+            animation: pulse 10s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .hero-content-editorial {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-eyebrow {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--orange-secondaire);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+
+        .hero-split h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 3rem;
+            letter-spacing: -2px;
+        }
+
+        .hero-split-left p {
+            font-size: 1.5rem;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            color: rgba(255,255,255,0.9);
+            max-width: 500px;
+        }
+
+        .hero-buttons-editorial {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .btn-large {
+            padding: 1.5rem 3rem;
+            font-size: 1.25rem;
+            border-radius: 16px;
+            font-weight: 800;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary-editorial {
+            background: var(--orange-secondaire);
+            color: white;
+        }
+
+        .btn-primary-editorial:hover {
+            background: #d97706;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.4);
+        }
+
+        .btn-secondary-editorial {
+            background: transparent;
+            color: white;
+            border: 3px solid white;
+        }
+
+        .btn-secondary-editorial:hover {
+            background: white;
+            color: var(--bleu-primaire);
+        }
+
+        .hero-split-right {
+            background: #f1f5f9;
+            padding: 10rem 4rem 4rem 2rem;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .dashboard-preview {
+            width: 100%;
+            height: auto;
+            border-radius: 24px;
+            box-shadow: -40px 40px 80px rgba(0,0,0,0.2);
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: transform 0.5s;
+        }
+
+        .dashboard-preview:hover {
+            transform: perspective(1000px) rotateY(0deg) scale(1.02);
+        }
+
+        /* TIMELINE HORIZONTAL */
+        .timeline-section {
+            padding: 8rem 0;
+            background: white;
+            overflow-x: hidden;
+        }
+
+        .timeline-header {
+            text-align: center;
+            margin-bottom: 6rem;
+            padding: 0 4rem;
+        }
+
+        .timeline-header h2 {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--bleu-primaire);
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+        }
+
+        .timeline-header p {
+            font-size: 1.5rem;
+            color: var(--gray-dark);
+        }
+
+        .timeline-track {
+            display: flex;
+            gap: 4rem;
+            padding: 0 4rem 4rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: thin;
+            scrollbar-color: var(--orange-secondaire) #e2e8f0;
+        }
+
+        .timeline-track::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .timeline-track::-webkit-scrollbar-track {
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+
+        .timeline-track::-webkit-scrollbar-thumb {
+            background: var(--orange-secondaire);
+            border-radius: 10px;
+        }
+
+        .timeline-item {
+            min-width: 500px;
+            scroll-snap-align: start;
+            background: linear-gradient(135deg, #f8fafc 0%, white 100%);
+            border-radius: 32px;
+            padding: 3rem;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+
+        .timeline-item:hover {
+            border-color: var(--cyan-accent);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+
+        .timeline-number {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--orange-secondaire);
+            opacity: 0.3;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-item h3 {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--bleu-primaire);
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-item p {
+            font-size: 1.125rem;
+            color: var(--gray-dark);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .timeline-stat {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 16px;
+            border-left: 4px solid var(--cyan-accent);
+        }
+
+        .timeline-stat-value {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--bleu-primaire);
+        }
+
+        .timeline-stat-label {
+            font-size: 0.875rem;
+            color: var(--gray-dark);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        /* FULLSCREEN GALLERY */
+        .gallery-fullscreen {
+            background: var(--bleu-primaire);
+            padding: 0;
+        }
+
+        .gallery-slide {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 4rem;
+        }
+
+        .gallery-slide:nth-child(even) {
+            background: #0f172a;
+        }
+
+        .gallery-content {
+            max-width: 1400px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .gallery-text {
+            color: white;
+        }
+
+        .gallery-text h3 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            letter-spacing: -1px;
+        }
+
+        .gallery-text p {
+            font-size: 1.375rem;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 2rem;
+        }
+
+        .gallery-features {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .gallery-features li {
+            padding: 1rem 0;
+            font-size: 1.125rem;
+            color: rgba(255,255,255,0.9);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .gallery-features li::before {
+            content: '→';
+            color: var(--orange-secondaire);
+            font-weight: 900;
+            font-size: 1.5rem;
+        }
+
+        .gallery-image {
+            width: 100%;
+            border-radius: 24px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+        }
+
+        /* PRICING SLIDER */
+        .pricing-slider-section {
+            padding: 8rem 0;
+            background: linear-gradient(180deg, #f8fafc 0%, white 100%);
+        }
+
+        .pricing-slider-header {
+            text-align: center;
+            margin-bottom: 6rem;
+        }
+
+        .pricing-slider-header h2 {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--bleu-primaire);
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-slider {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 2rem;
+            padding: 0 4rem;
+            align-items: center;
+        }
+
+        .pricing-arrow {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--bleu-primaire);
+            color: white;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+
+        .pricing-arrow:hover {
+            background: var(--orange-secondaire);
+            transform: scale(1.1);
+        }
+
+        .pricing-cards-slider {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            flex: 1;
+        }
+
+        .pricing-cards-slider::-webkit-scrollbar {
+            display: none;
+        }
+
+        .pricing-card-editorial {
+            min-width: 380px;
+            background: white;
+            border-radius: 32px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            scroll-snap-align: center;
+            transition: all 0.3s;
+        }
+
+        .pricing-card-editorial:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .pricing-card-editorial.highlighted {
+            background: linear-gradient(135deg, var(--bleu-primaire) 0%, #0f172a 100%);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .pricing-card-editorial h3 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-price-editorial {
+            font-size: 5rem;
+            font-weight: 900;
+            margin: 2rem 0;
+        }
+
+        .pricing-card-editorial.highlighted .pricing-price-editorial {
+            background: linear-gradient(135deg, var(--orange-secondaire) 0%, var(--cyan-accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .pricing-features-editorial {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .pricing-features-editorial li {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .pricing-card-editorial.highlighted .pricing-features-editorial li {
+            border-bottom-color: rgba(255,255,255,0.2);
+        }
+
+        /* STORY SECTION */
+        .story-section {
+            padding: 10rem 4rem;
+            background: linear-gradient(135deg, var(--bleu-primaire) 0%, #0f172a 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .story-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .story-section h2 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 3rem;
+            letter-spacing: -2px;
+        }
+
+        .story-section p {
+            font-size: 1.75rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: rgba(255,255,255,0.9);
+        }
+
+        /* FOOTER MINIMAL */
+        footer {
+            background: #0f172a;
+            color: white;
+            padding: 6rem 4rem 3rem;
+        }
+
+        .footer-editorial {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand-editorial h4 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+        }
+
+        .footer-brand-editorial p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .footer-column h5 {
+            font-size: 1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            color: var(--orange-secondaire);
+        }
+
+        .footer-column a {
+            display: block;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .footer-bottom-editorial {
+            text-align: center;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+            font-size: 0.875rem;
+        }
+
+        /* ========================================
+           RESPONSIVE DESIGN - MOBILE FIRST
+           ======================================== */
+
+        /* Menu hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--bleu-primaire);
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+
+        .header-editorial.scrolled .hamburger span {
+            background: var(--bleu-primaire);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* TABLET (768px - 1024px) */
+        @media (max-width: 1024px) {
+            /* Hero split -> 1 colonne */
+            .hero-split {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+
+            .hero-split-left {
+                padding: 4rem 3rem;
+            }
+
+            .hero-split h1 {
+                font-size: 3rem;
+            }
+
+            .hero-split-right {
+                padding: 3rem 2rem;
+                min-height: 400px;
+            }
+
+            /* Timeline -> scroll horizontal réduit */
+            .timeline-item {
+                min-width: 400px;
+            }
+
+            /* Gallery fullscreen */
+            .gallery-content {
+                grid-template-columns: 1fr;
+                padding: 3rem 2rem;
+            }
+
+            .gallery-image {
+                max-height: 400px;
+            }
+
+            /* Pricing slider */
+            .pricing-slider-controls {
+                padding: 0 2rem;
+            }
+
+            /* Footer 2 colonnes */
+            .footer-columns {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* MOBILE (< 768px) */
+        @media (max-width: 768px) {
+            /* Header mobile */
+            .header-editorial nav {
+                flex-wrap: wrap;
+                padding: 1rem 1.5rem;
+                position: relative;
+            }
+
+            .logo-editorial {
+                font-size: 1.25rem;
+            }
+
+            .nav-links-editorial {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                z-index: 1000;
+                border-top: 1px solid var(--gray-light);
+            }
+
+            .header-editorial.scrolled .nav-links-editorial {
+                background: white;
+            }
+
+            .nav-links-editorial.active {
+                display: flex;
+            }
+
+            .nav-links-editorial li {
+                margin: 0;
+                border-bottom: 1px solid var(--gray-light);
+            }
+
+            .nav-links-editorial a {
+                display: block;
+                padding: 1rem 1.5rem;
+                color: var(--bleu-primaire);
+            }
+
+            .btn-primary-editorial {
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+            }
+
+            .hamburger {
+                display: flex;
+                order: 2;
+                margin-left: auto;
+            }
+
+            /* Hero split mobile */
+            .hero-split {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-split-left {
+                padding: 3rem 1.5rem;
+                text-align: center;
+            }
+
+            .hero-split h1 {
+                font-size: 2rem;
+                line-height: 1.2;
+            }
+
+            .hero-split p {
+                font-size: 1rem;
+            }
+
+            .hero-cta-editorial {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-split-right {
+                padding: 2rem 1.5rem;
+                min-height: 300px;
+            }
+
+            .dashboard-preview {
+                transform: none;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            }
+
+            /* Timeline mobile */
+            .timeline-section {
+                padding: 4rem 0;
+            }
+
+            .timeline-header {
+                padding: 0 1.5rem;
+                margin-bottom: 3rem;
+            }
+
+            .timeline-header h2 {
+                font-size: 2rem;
+            }
+
+            .timeline-header p {
+                font-size: 1rem;
+            }
+
+            .timeline-track {
+                padding: 0 1.5rem 2rem;
+                gap: 2rem;
+            }
+
+            .timeline-item {
+                min-width: 300px;
+                padding: 2rem;
+            }
+
+            .timeline-number {
+                font-size: 3rem;
+            }
+
+            .timeline-title {
+                font-size: 1.25rem;
+            }
+
+            .timeline-description {
+                font-size: 0.875rem;
+            }
+
+            /* Gallery fullscreen mobile */
+            .gallery-fullscreen {
+                padding: 3rem 1.5rem;
+            }
+
+            .gallery-content {
+                grid-template-columns: 1fr;
+                padding: 2rem 1.5rem;
+                gap: 2rem;
+            }
+
+            .gallery-text h2 {
+                font-size: 2rem;
+            }
+
+            .gallery-text p {
+                font-size: 1rem;
+            }
+
+            .gallery-image {
+                max-height: 300px;
+            }
+
+            /* Pricing slider mobile */
+            .pricing-editorial {
+                padding: 4rem 1.5rem;
+            }
+
+            .pricing-editorial h2 {
+                font-size: 2rem;
+            }
+
+            .pricing-slider-track {
+                padding: 0 1rem;
+                gap: 1.5rem;
+            }
+
+            .pricing-card-slider {
+                min-width: 280px;
+                padding: 2rem 1.5rem;
+            }
+
+            .pricing-slider-controls {
+                padding: 0 1rem;
+            }
+
+            .slider-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 1.25rem;
+            }
+
+            /* Story section mobile */
+            .story-section {
+                padding: 4rem 1.5rem;
+            }
+
+            .story-section h2 {
+                font-size: 2rem;
+            }
+
+            .story-section p {
+                font-size: 1rem;
+            }
+
+            /* Footer mobile */
+            .footer-editorial {
+                padding: 3rem 1.5rem 2rem;
+            }
+
+            .footer-columns {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-logo-editorial {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* TRÈS PETIT MOBILE (< 480px) */
+        @media (max-width: 480px) {
+            .hero-split-left {
+                padding: 2rem 1rem;
+            }
+
+            .hero-split h1 {
+                font-size: 1.75rem;
+            }
+
+            .timeline-section {
+                padding: 3rem 0;
+            }
+
+            .timeline-header h2 {
+                font-size: 1.75rem;
+            }
+
+            .timeline-item {
+                min-width: 260px;
+                padding: 1.5rem;
+            }
+
+            .gallery-fullscreen {
+                padding: 2rem 1rem;
+            }
+
+            .gallery-text h2 {
+                font-size: 1.75rem;
+            }
+
+            .pricing-editorial {
+                padding: 3rem 1rem;
+            }
+
+            .pricing-card-slider {
+                min-width: 260px;
+            }
+
+            .btn {
+                padding: 0.875rem 1.5rem;
+                font-size: 0.875rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER MINIMAL -->
+    <header id="header" class="header-editorial">
+        <nav>
+            <a href="maquettes.html" class="logo-editorial" style="text-decoration: none;">📅 Agenda Pulse <span style="font-size: 0.5em; opacity: 0.7;">C</span></a>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links-editorial" id="navLinks">
+                <li><a href="maquettes.html">← Toutes les maquettes</a></li>
+                <li><a href="maquette-A-classique.html">Maquette A</a></li>
+                <li><a href="maquette-B-moderne.html">Maquette B</a></li>
+            </ul>
+            <a href="#" class="btn-primary-editorial">Essai gratuit</a>
+        </nav>
+    </header>
+
+    <!-- HERO SPLIT VERTICAL -->
+    <section class="hero-split">
+        <div class="hero-split-left">
+            <div class="hero-content-editorial">
+                <div class="hero-eyebrow">50+ Fonctionnalités</div>
+                <h1>Transformez votre façon de travailler</h1>
+                <p>La plateforme qui donne aux professionnels indépendants les outils des grandes entreprises.</p>
+                <div class="hero-buttons-editorial">
+                    <a href="#" class="btn-large btn-primary-editorial">Démarrer gratuitement</a>
+                    <a href="#" class="btn-large btn-secondary-editorial">Voir la démo</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-split-right">
+            <img src="docs/acceuil/etat-des-lieux/captures-ecran/providers/01-dashboard.png" alt="Dashboard" class="dashboard-preview">
+        </div>
+    </section>
+
+    <!-- TIMELINE HORIZONTAL -->
+    <section id="features" class="timeline-section">
+        <div class="timeline-header">
+            <h2>Tout ce dont vous avez besoin</h2>
+            <p>Scrollez horizontalement pour découvrir toutes les fonctionnalités</p>
+        </div>
+
+        <div class="timeline-track">
+            <div class="timeline-item">
+                <div class="timeline-number">01</div>
+                <h3>Dashboard Temps Réel</h3>
+                <p>Visualisez toute votre activité en un coup d'œil. 9 RDV aujourd'hui, confirmations en attente, analytics d'annulations.</p>
+                <div class="timeline-stats">
+                    <div class="timeline-stat">
+                        <div class="timeline-stat-value">9</div>
+                        <div class="timeline-stat-label">RDV Aujourd'hui</div>
+                    </div>
+                    <div class="timeline-stat">
+                        <div class="timeline-stat-value">2</div>
+                        <div class="timeline-stat-label">Annulations</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-number">02</div>
+                <h3>CRM Intelligent</h3>
+                <p>Gérez vos clients avec une interface moderne. Recherche instantanée, import CSV, tags et historique complet.</p>
+                <div class="timeline-stats">
+                    <div class="timeline-stat">
+                        <div class="timeline-stat-value">7</div>
+                        <div class="timeline-stat-label">Clients actifs</div>
+                    </div>
+                    <div class="timeline-stat">
+                        <div class="timeline-stat-value">5</div>
+                        <div class="timeline-stat-label">Avec email</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-number">03</div>
+                <h3>Finances Automatisées</h3>
+                <p>Suivi en temps réel de vos revenus. 605€ encaissé, alertes automatiques sur les impayés.</p>
+                <div class="timeline-stats">
+                    <div class="timeline-stat">
+                        <div class="timeline-stat-value">605€</div>
+                        <div class="timeline-stat-label">Encaissé</div>
+                    </div>
+                    <div class="timeline-stat">
+                        <div class="timeline-stat-value">40+</div>
+                        <div class="timeline-stat-label">Transactions</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-number">04</div>
+                <h3>3 Calendriers</h3>
+                <p>Principal pour vos RDV, Personnel pour vos congés, Réservation en ligne pour vos clients.</p>
+                <div class="timeline-stats">
+                    <div class="timeline-stat">
+                        <div class="timeline-stat-value">3</div>
+                        <div class="timeline-stat-label">Types</div>
+                    </div>
+                    <div class="timeline-stat">
+                        <div class="timeline-stat-value">4</div>
+                        <div class="timeline-stat-label">Vues</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-number">05</div>
+                <h3>Analytics Uniques</h3>
+                <p>Rapports d'annulations avec comparaisons automatiques. Export PDF et Email intégrés.</p>
+                <div class="timeline-stats">
+                    <div class="timeline-stat">
+                        <div class="timeline-stat-value">+2</div>
+                        <div class="timeline-stat-label">vs semaine passée</div>
+                    </div>
+                    <div class="timeline-stat">
+                        <div class="timeline-stat-value">PDF</div>
+                        <div class="timeline-stat-label">Export</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-number">06</div>
+                <h3>Communication Auto</h3>
+                <p>Rappels Email et SMS automatiques. Templates personnalisables, campagnes ciblées.</p>
+                <div class="timeline-stats">
+                    <div class="timeline-stat">
+                        <div class="timeline-stat-value">∞</div>
+                        <div class="timeline-stat-label">SMS (Pro)</div>
+                    </div>
+                    <div class="timeline-stat">
+                        <div class="timeline-stat-value">✓</div>
+                        <div class="timeline-stat-label">Templates</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FULLSCREEN GALLERY -->
+    <section id="gallery" class="gallery-fullscreen">
+        <div class="gallery-slide">
+            <div class="gallery-content">
+                <div class="gallery-text">
+                    <h3>Dashboard Pro</h3>
+                    <p>9 rendez-vous aujourd'hui, 1 en attente de confirmation, 2 annulations cette semaine.</p>
+                    <ul class="gallery-features">
+                        <li>Vue temps réel</li>
+                        <li>Analytics comparatives</li>
+                        <li>Actions rapides</li>
+                        <li>Multi-lieux (Mauguio, Palavas)</li>
+                    </ul>
+                </div>
+                <img src="docs/acceuil/etat-des-lieux/captures-ecran/providers/01-dashboard.png" alt="Dashboard" class="gallery-image">
+            </div>
+        </div>
+
+        <div class="gallery-slide">
+            <div class="gallery-content">
+                <img src="docs/acceuil/etat-des-lieux/captures-ecran/providers/02-clients-crm.png" alt="CRM" class="gallery-image">
+                <div class="gallery-text">
+                    <h3>CRM Moderne</h3>
+                    <p>7 clients avec avatars colorés, recherche instantanée en 3 caractères.</p>
+                    <ul class="gallery-features">
+                        <li>Grille visuelle</li>
+                        <li>Import CSV</li>
+                        <li>Tags & notes</li>
+                        <li>Stats temps réel</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery-slide">
+            <div class="gallery-content">
+                <div class="gallery-text">
+                    <h3>Finances Automatisées</h3>
+                    <p>605€ encaissé, 57€ de solde, 40+ transactions trackées avec alertes automatiques.</p>
+                    <ul class="gallery-features">
+                        <li>Dashboard métriques</li>
+                        <li>Tableau transactions</li>
+                        <li>Alertes impayés</li>
+                        <li>Export comptable</li>
+                    </ul>
+                </div>
+                <img src="docs/acceuil/etat-des-lieux/captures-ecran/providers/03-finances.png" alt="Finances" class="gallery-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING SLIDER -->
+    <section id="pricing" class="pricing-slider-section">
+        <div class="pricing-slider-header">
+            <h2>Choisissez votre plan</h2>
+            <p>14 jours gratuits • Sans engagement • Sans carte bancaire</p>
+        </div>
+
+        <div class="pricing-slider">
+            <button class="pricing-arrow">←</button>
+
+            <div class="pricing-cards-slider">
+                <div class="pricing-card-editorial">
+                    <h3>Starter</h3>
+                    <div class="pricing-price-editorial">1,90€</div>
+                    <p style="color: var(--gray-dark);">/ mois</p>
+                    <ul class="pricing-features-editorial">
+                        <li>✓ Calendrier personnel</li>
+                        <li>✓ Jusqu'à 20 clients</li>
+                        <li>✓ Rappels email</li>
+                        <li>✓ Support email</li>
+                    </ul>
+                    <a href="#" class="btn-large btn-secondary-editorial" style="width: 100%; text-align: center; margin-top: 2rem; background: var(--bleu-primaire); color: white; border: none;">Démarrer</a>
+                </div>
+
+                <div class="pricing-card-editorial highlighted">
+                    <h3>Pro</h3>
+                    <div class="pricing-price-editorial">19,90€</div>
+                    <p>/ mois</p>
+                    <ul class="pricing-features-editorial">
+                        <li>✓ Clients illimités ∞</li>
+                        <li>✓ SMS illimités</li>
+                        <li>✓ Analytics avancées</li>
+                        <li>✓ Cartes-cadeaux</li>
+                        <li>✓ Support prioritaire</li>
+                    </ul>
+                    <a href="#" class="btn-large btn-primary-editorial" style="width: 100%; text-align: center; margin-top: 2rem;">Essai gratuit</a>
+                </div>
+
+                <div class="pricing-card-editorial">
+                    <h3>Multi</h3>
+                    <div class="pricing-price-editorial">59,90€</div>
+                    <p style="color: var(--gray-dark);">/ mois</p>
+                    <ul class="pricing-features-editorial">
+                        <li>✓ 5 utilisateurs</li>
+                        <li>✓ Calendrier partagé</li>
+                        <li>✓ Gestion d'équipe</li>
+                        <li>✓ Dashboard consolidé</li>
+                        <li>✓ Gestionnaire dédié</li>
+                    </ul>
+                    <a href="#" class="btn-large btn-secondary-editorial" style="width: 100%; text-align: center; margin-top: 2rem; background: var(--bleu-primaire); color: white; border: none;">Démarrer</a>
+                </div>
+            </div>
+
+            <button class="pricing-arrow">→</button>
+        </div>
+    </section>
+
+    <!-- STORY SECTION -->
+    <section class="story-section">
+        <div class="story-content">
+            <h2>Rejoignez 183 professionnels qui ont transformé leur activité</h2>
+            <p>Agenda Pulse n'est pas juste un logiciel. C'est votre partenaire pour développer votre activité.</p>
+            <p>9,172 rendez-vous gérés. 605€ de revenus quotidiens. 97% de satisfaction.</p>
+            <a href="#" class="btn-large btn-primary-editorial" style="margin-top: 3rem;">Démarrer gratuitement</a>
+        </div>
+    </section>
+
+    <!-- FOOTER MINIMAL -->
+    <footer>
+        <div class="footer-editorial">
+            <div class="footer-brand-editorial">
+                <h4>📅 Agenda Pulse</h4>
+                <p>La plateforme qui transforme votre façon de travailler. Optimisez votre temps, développez votre activité.</p>
+            </div>
+
+            <div class="footer-column">
+                <h5>Produit</h5>
+                <a href="#">Fonctionnalités</a>
+                <a href="#">Tarifs</a>
+                <a href="#">Démo</a>
+            </div>
+
+            <div class="footer-column">
+                <h5>Entreprise</h5>
+                <a href="#">À propos</a>
+                <a href="#">Blog</a>
+                <a href="#">Contact</a>
+            </div>
+
+            <div class="footer-column">
+                <h5>Légal</h5>
+                <a href="#">Conditions</a>
+                <a href="#">Confidentialité</a>
+                <a href="#">Mentions légales</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom-editorial">
+            © 2026 Agenda Pulse. Tous droits réservés. Conçu avec passion pour les professionnels indépendants.
+        </div>
+    </footer>
+
+    <script>
+        // Menu hamburger toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Fermer le menu si on clique sur un lien
+        document.querySelectorAll('.nav-links-editorial a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
+
+        // Fermer le menu si on clique en dehors
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('active');
+            }
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Pricing slider
+        const sliderContainer = document.querySelector('.pricing-cards-slider');
+        const arrows = document.querySelectorAll('.pricing-arrow');
+
+        if (arrows[0]) {
+            arrows[0].addEventListener('click', () => {
+                sliderContainer.scrollBy({ left: -420, behavior: 'smooth' });
+            });
+        }
+
+        if (arrows[1]) {
+            arrows[1].addEventListener('click', () => {
+                sliderContainer.scrollBy({ left: 420, behavior: 'smooth' });
+            });
+        }
+    </script>
+</body>
+</html>

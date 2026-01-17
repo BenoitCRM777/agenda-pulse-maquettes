@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda Pulse - Maquettes de la Page d'Accueil</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bleu-primaire: #1e40af;
+            --bleu-hover: #1e3a8a;
+            --orange-secondaire: #f59e0b;
+            --orange-hover: #d97706;
+            --cyan-accent: #06b6d4;
+            --gray-dark: #64748b;
+            --gray-light: #e2e8f0;
+            --gray-bg: #f8fafc;
+        }
+
+        body {
+            font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, var(--bleu-primaire) 0%, var(--cyan-accent) 100%);
+            min-height: 100vh;
+            padding: 3rem 1.5rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 4rem;
+        }
+
+        .logo {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        .version {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            margin-top: 1rem;
+        }
+
+        .maquettes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .maquette-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .maquette-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+        }
+
+        .maquette-badge {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: var(--orange-secondaire);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            z-index: 10;
+        }
+
+        .maquette-preview {
+            height: 300px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            border-bottom: 3px solid var(--gray-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .maquette-preview::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg,
+                transparent 0%,
+                rgba(30, 64, 175, 0.05) 50%,
+                transparent 100%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+
+        .maquette-content {
+            padding: 2rem;
+        }
+
+        .maquette-title {
+            font-size: 1.75rem;
+            font-weight: 900;
+            color: var(--bleu-primaire);
+            margin-bottom: 0.75rem;
+        }
+
+        .maquette-description {
+            color: var(--gray-dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .maquette-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .maquette-features li {
+            padding: 0.5rem 0;
+            color: var(--gray-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .maquette-features li::before {
+            content: '✓';
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: var(--cyan-accent);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-weight: 900;
+            flex-shrink: 0;
+        }
+
+        .maquette-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--gray-bg);
+            border-radius: 12px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--gray-dark);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-value {
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: var(--bleu-primaire);
+        }
+
+        .btn-view {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: var(--bleu-primaire);
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.125rem;
+            transition: all 0.3s;
+        }
+
+        .btn-view:hover {
+            background: var(--bleu-hover);
+            transform: scale(1.02);
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            padding: 2rem;
+            opacity: 0.9;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body { padding: 2rem 1rem; }
+            .logo { font-size: 2rem; }
+            h1 { font-size: 2rem; }
+            .subtitle { font-size: 1rem; }
+
+            .maquettes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .maquette-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">📅 Agenda Pulse</div>
+            <h1>Choisissez Votre Maquette</h1>
+            <p class="subtitle">3 designs professionnels, 100% responsive</p>
+            <div class="version">Version 2026-01-17</div>
+        </header>
+
+        <div class="maquettes-grid">
+            <!-- MAQUETTE A -->
+            <div class="maquette-card">
+                <div class="maquette-badge">Recommandé</div>
+                <div class="maquette-preview">
+                    📊
+                </div>
+                <div class="maquette-content">
+                    <h2 class="maquette-title">Maquette A - Classique</h2>
+                    <p class="maquette-description">
+                        Layout sobre et professionnel optimisé pour la conversion. Structure éprouvée qui fonctionne.
+                    </p>
+
+                    <div class="maquette-stats">
+                        <div class="stat">
+                            <div class="stat-label">Conversion</div>
+                            <div class="stat-value">⭐⭐⭐</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-label">Complexité</div>
+                            <div class="stat-value">⭐ Facile</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-label">Temps</div>
+                            <div class="stat-value">2-3j</div>
+                        </div>
+                    </div>
+
+                    <ul class="maquette-features">
+                        <li>Grille 3 colonnes pour features</li>
+                        <li>Hero avec screenshot dashboard</li>
+                        <li>Navigation sticky fluide</li>
+                        <li>100% responsive mobile</li>
+                    </ul>
+
+                    <a href="maquette-A-classique.html" class="btn-view">Voir la maquette →</a>
+                </div>
+            </div>
+
+            <!-- MAQUETTE B -->
+            <div class="maquette-card">
+                <div class="maquette-badge" style="background: var(--cyan-accent);">Moderne</div>
+                <div class="maquette-preview">
+                    🎨
+                </div>
+                <div class="maquette-content">
+                    <h2 class="maquette-title">Maquette B - Moderne</h2>
+                    <p class="maquette-description">
+                        Layout asymétrique avec Bento grid et carrousel auto-défilant. Design moderne et engageant.
+                    </p>
+
+                    <div class="maquette-stats">
+                        <div class="stat">
+                            <div class="stat-label">Mémorabilité</div>
+                            <div class="stat-value">⭐⭐</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-label">Complexité</div>
+                            <div class="stat-value">⭐⭐</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-label">Temps</div>
+                            <div class="stat-value">4-5j</div>
+                        </div>
+                    </div>
+
+                    <ul class="maquette-features">
+                        <li>Bento grid 2 grandes + 6 petites cards</li>
+                        <li>Carrousel interactif auto-scroll</li>
+                        <li>Pricing 3D avec effet scale</li>
+                        <li>Menu hamburger animation X</li>
+                    </ul>
+
+                    <a href="maquette-B-moderne.html" class="btn-view">Voir la maquette →</a>
+                </div>
+            </div>
+
+            <!-- MAQUETTE C -->
+            <div class="maquette-card">
+                <div class="maquette-badge" style="background: var(--bleu-primaire);">Premium</div>
+                <div class="maquette-preview">
+                    ✨
+                </div>
+                <div class="maquette-content">
+                    <h2 class="maquette-title">Maquette C - Editorial</h2>
+                    <p class="maquette-description">
+                        Layout magazine-style avec timeline horizontale et galerie fullscreen. Expérience immersive.
+                    </p>
+
+                    <div class="maquette-stats">
+                        <div class="stat">
+                            <div class="stat-label">Différenciation</div>
+                            <div class="stat-value">⭐⭐⭐</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-label">Complexité</div>
+                            <div class="stat-value">⭐⭐⭐</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-label">Temps</div>
+                            <div class="stat-value">6-8j</div>
+                        </div>
+                    </div>
+
+                    <ul class="maquette-features">
+                        <li>Hero split vertical 40/60</li>
+                        <li>Timeline horizontale scrollable</li>
+                        <li>Gallery fullscreen avec overlay</li>
+                        <li>Header transparent qui change au scroll</li>
+                    </ul>
+
+                    <a href="maquette-C-editorial.html" class="btn-view">Voir la maquette →</a>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>
+                <strong>🎨 Design System :</strong> Bleu #1e40af · Orange #f59e0b · Cyan #06b6d4<br>
+                <strong>📱 Responsive :</strong> Mobile (< 768px) · Tablet (768-1024px) · Desktop (> 1024px)<br>
+                Créé le 2026-01-17
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
