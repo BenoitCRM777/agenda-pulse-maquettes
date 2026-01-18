@@ -148,9 +148,22 @@ La structure est conçue pour faciliter l'ajout de nouvelles propositions :
 
 ## 🌐 Déploiement GitHub Pages
 
-### URLs actuelles (à vérifier)
-- **Page index** : `https://benoitcrm777.github.io/agenda-pulse-maquettes/index-propositions-toutes.html`
+### URLs actuelles
+- **Page index principale** : `https://benoitcrm777.github.io/agenda-pulse-maquettes/`
 - **Anciennes maquettes** : `https://benoitcrm777.github.io/agenda-pulse-maquettes/maquettes.html`
+
+### URLs de toutes les maquettes
+**Maquettes v1 :**
+- https://benoitcrm777.github.io/agenda-pulse-maquettes/maquette-A-classique.html
+- https://benoitcrm777.github.io/agenda-pulse-maquettes/maquette-B-moderne.html
+- https://benoitcrm777.github.io/agenda-pulse-maquettes/maquette-C-editorial.html
+
+**Maquettes v2 :**
+- https://benoitcrm777.github.io/agenda-pulse-maquettes/propositions-design-2026/maquette-1-warm-professional.html
+- https://benoitcrm777.github.io/agenda-pulse-maquettes/propositions-design-2026/maquette-2-nature-business.html
+- https://benoitcrm777.github.io/agenda-pulse-maquettes/propositions-design-2026/maquette-3-bold-minimalist.html
+- https://benoitcrm777.github.io/agenda-pulse-maquettes/propositions-design-2026/maquette-4-moderne-hybride.html
+- https://benoitcrm777.github.io/agenda-pulse-maquettes/propositions-design-2026/maquette-5-tech-chaleureux.html
 
 ### Pour mettre à jour
 ```bash
