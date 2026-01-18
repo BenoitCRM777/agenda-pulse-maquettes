@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda Pulse - 5 Nouvelles Propositions de Design</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 3rem 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #ffd93d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 600;
+        }
+
+        .intro {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .intro h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #4ecdc4;
+        }
+
+        .intro p {
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 2px solid transparent;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: currentColor;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-1 {
+            border-color: rgba(234, 88, 12, 0.3);
+        }
+        .card-1:hover {
+            border-color: #ea580c;
+            box-shadow: 0 20px 60px rgba(234, 88, 12, 0.3);
+        }
+
+        .card-2 {
+            border-color: rgba(4, 120, 87, 0.3);
+        }
+        .card-2:hover {
+            border-color: #047857;
+            box-shadow: 0 20px 60px rgba(4, 120, 87, 0.3);
+        }
+
+        .card-3 {
+            border-color: rgba(234, 179, 8, 0.3);
+        }
+        .card-3:hover {
+            border-color: #eab308;
+            box-shadow: 0 20px 60px rgba(234, 179, 8, 0.3);
+        }
+
+        .card-4 {
+            border-color: rgba(236, 72, 153, 0.3);
+        }
+        .card-4:hover {
+            border-color: #ec4899;
+            box-shadow: 0 20px 60px rgba(236, 72, 153, 0.3);
+        }
+
+        .card-5 {
+            border-color: rgba(67, 56, 202, 0.3);
+        }
+        .card-5:hover {
+            border-color: #4338ca;
+            box-shadow: 0 20px 60px rgba(67, 56, 202, 0.3);
+        }
+
+        .card-header {
+            padding: 2rem;
+            position: relative;
+        }
+
+        .card-number {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 4rem;
+            font-weight: 800;
+            opacity: 0.15;
+        }
+
+        .card-badge {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .card-1 .card-badge {
+            background: rgba(234, 88, 12, 0.2);
+            color: #fca574;
+        }
+
+        .card-2 .card-badge {
+            background: rgba(4, 120, 87, 0.2);
+            color: #6ee7b7;
+        }
+
+        .card-3 .card-badge {
+            background: rgba(234, 179, 8, 0.2);
+            color: #fde047;
+        }
+
+        .card-4 .card-badge {
+            background: rgba(236, 72, 153, 0.2);
+            color: #f9a8d4;
+        }
+
+        .card-5 .card-badge {
+            background: rgba(67, 56, 202, 0.2);
+            color: #a5b4fc;
+        }
+
+        .card h3 {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+            font-weight: 800;
+        }
+
+        .card-description {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .palette {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .color-dot {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .card:hover .color-dot {
+            transform: scale(1.15);
+        }
+
+        .target {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .target strong {
+            color: #4ecdc4;
+        }
+
+        .target-list {
+            list-style: none;
+            margin-top: 0.5rem;
+        }
+
+        .target-list li {
+            padding: 0.25rem 0;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .target-list li::before {
+            content: '→';
+            margin-right: 0.5rem;
+            color: #4ecdc4;
+        }
+
+        .btn {
+            display: block;
+            width: calc(100% - 4rem);
+            margin: 0 2rem 2rem;
+            padding: 1.25rem;
+            background: white;
+            color: #1e1e1e;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .card-1 .btn {
+            background: linear-gradient(135deg, #ea580c, #f97316);
+            color: white;
+        }
+
+        .card-2 .btn {
+            background: linear-gradient(135deg, #047857, #10b981);
+            color: white;
+        }
+
+        .card-3 .btn {
+            background: linear-gradient(135deg, #eab308, #fbbf24);
+            color: #1e1e1e;
+        }
+
+        .card-4 .btn {
+            background: linear-gradient(135deg, #ec4899, #f472b6);
+            color: white;
+        }
+
+        .card-5 .btn {
+            background: linear-gradient(135deg, #4338ca, #6366f1);
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎨 5 Nouvelles Propositions de Design</h1>
+            <p class="subtitle">Agenda Pulse - Des designs qui sortent du moule IA</p>
+        </header>
+
+        <div class="intro">
+            <h2>🎯 Objectif de ces maquettes</h2>
+            <p>Créer <strong>5 designs distincts et professionnels</strong> qui évitent les palettes mauve/lavande génériques typiques des designs générés par IA. Chaque proposition cible un public spécifique avec une identité visuelle unique.</p>
+            <p><strong>Caractéristiques communes :</strong> Responsives, animations CSS fluides, typographies distinctives, palettes cohérentes, micro-interactions soignées.</p>
+        </div>
+
+        <div class="grid">
+            <!-- Maquette 1 -->
+            <div class="card card-1">
+                <div class="card-header">
+                    <span class="card-number">01</span>
+                    <span class="card-badge">Éditoriale raffinée</span>
+                    <h3>Warm Professional</h3>
+                    <p class="card-description">Design éditorial raffiné qui équilibre professionnalisme et chaleur humaine. Textures papier, typographie serif élégante.</p>
+
+                    <div class="palette">
+                        <div class="color-dot" style="background: #334155;" title="Bleu Ardoise"></div>
+                        <div class="color-dot" style="background: #ea580c;" title="Terracotta"></div>
+                        <div class="color-dot" style="background: #06b6d4;" title="Cyan"></div>
+                        <div class="color-dot" style="background: #84cc16;" title="Vert Sauge"></div>
+                    </div>
+
+                    <div class="target">
+                        <strong>Cible :</strong>
+                        <ul class="target-list">
+                            <li>Thérapeutes</li>
+                            <li>Consultants élégants</li>
+                            <li>Coachs de vie</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="maquette-1-warm-professional.html" class="btn">Voir la maquette →</a>
+            </div>
+
+            <!-- Maquette 2 -->
+            <div class="card card-2">
+                <div class="card-header">
+                    <span class="card-number">02</span>
+                    <span class="card-badge">Organique & Apaisant</span>
+                    <h3>Nature Business</h3>
+                    <p class="card-description">Esthétique naturelle et organique avec formes arrondies, animations blob, palette terre. Parfait pour le bien-être.</p>
+
+                    <div class="palette">
+                        <div class="color-dot" style="background: #047857;" title="Vert Forêt"></div>
+                        <div class="color-dot" style="background: #d4a574;" title="Beige Sable"></div>
+                        <div class="color-dot" style="background: #0e7490;" title="Bleu Pétrole"></div>
+                        <div class="color-dot" style="background: #65a30d;" title="Vert Citron"></div>
+                    </div>
+
+                    <div class="target">
+                        <strong>Cible :</strong>
+                        <ul class="target-list">
+                            <li>Praticiens bien-être</li>
+                            <li>Naturopathes</li>
+                            <li>Yoga thérapeutes</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="maquette-2-nature-business.html" class="btn">Voir la maquette →</a>
+            </div>
+
+            <!-- Maquette 3 -->
+            <div class="card card-3">
+                <div class="card-header">
+                    <span class="card-number">03</span>
+                    <span class="card-badge">Brutaliste minimaliste</span>
+                    <h3>Bold Minimalist</h3>
+                    <p class="card-description">Design brutaliste avec contraste maximal noir/blanc/jaune. Grille stricte, typographie impactante, Swiss design moderne.</p>
+
+                    <div class="palette">
+                        <div class="color-dot" style="background: #18181b;" title="Noir Charbon"></div>
+                        <div class="color-dot" style="background: #ffffff;" title="Blanc Pur"></div>
+                        <div class="color-dot" style="background: #eab308;" title="Jaune Miel"></div>
+                        <div class="color-dot" style="background: #059669;" title="Vert Émeraude"></div>
+                    </div>
+
+                    <div class="target">
+                        <strong>Cible :</strong>
+                        <ul class="target-list">
+                            <li>Consultants stratégie</li>
+                            <li>Formateurs pros</li>
+                            <li>Business coaches</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="maquette-3-bold-minimalist.html" class="btn">Voir la maquette →</a>
+            </div>
+
+            <!-- Maquette 4 -->
+            <div class="card card-4">
+                <div class="card-header">
+                    <span class="card-number">04</span>
+                    <span class="card-badge">Modern SaaS Friendly</span>
+                    <h3>Moderne Hybride</h3>
+                    <p class="card-description">Design moderne vibrant avec glassmorphism, gradients animés, micro-interactions ludiques. Tech meets friendly.</p>
+
+                    <div class="palette">
+                        <div class="color-dot" style="background: #0f766e;" title="Teal Foncé"></div>
+                        <div class="color-dot" style="background: #ec4899;" title="Rose Corail"></div>
+                        <div class="color-dot" style="background: #f59e0b;" title="Ambre"></div>
+                        <div class="color-dot" style="background: #fef7e9;" title="Ivoire"></div>
+                    </div>
+
+                    <div class="target">
+                        <strong>Cible :</strong>
+                        <ul class="target-list">
+                            <li>Professionnels tech-savvy</li>
+                            <li>Créatifs modernes</li>
+                            <li>Entrepreneurs digitaux</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="maquette-4-moderne-hybride.html" class="btn">Voir la maquette →</a>
+            </div>
+
+            <!-- Maquette 5 -->
+            <div class="card card-5">
+                <div class="card-header">
+                    <span class="card-number">05</span>
+                    <span class="card-badge">Human Tech</span>
+                    <h3>Tech Chaleureux</h3>
+                    <p class="card-description">Équilibre sophistication tech et approche humaine. Indigo doux + coral chaleureux. Convivial pour usage quotidien.</p>
+
+                    <div class="palette">
+                        <div class="color-dot" style="background: #4338ca;" title="Indigo"></div>
+                        <div class="color-dot" style="background: #ff6b6b;" title="Coral Vivant"></div>
+                        <div class="color-dot" style="background: #4ecdc4;" title="Turquoise"></div>
+                        <div class="color-dot" style="background: #424242;" title="Charcoal"></div>
+                    </div>
+
+                    <div class="target">
+                        <strong>Cible :</strong>
+                        <ul class="target-list">
+                            <li>Tous professionnels</li>
+                            <li>Usage quotidien intensif</li>
+                            <li>Équilibre pro/chaleur</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="maquette-5-tech-chaleureux.html" class="btn">Voir la maquette →</a>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2026 Agenda Pulse - 5 Propositions de Design | Créé par Claude Code</p>
+        </footer>
+    </div>
+</body>
+</html>

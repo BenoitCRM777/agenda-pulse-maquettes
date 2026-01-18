@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda Pulse - Tech Chaleureux</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --indigo: #4338ca;
+            --indigo-light: #6366f1;
+            --coral: #ff6b6b;
+            --coral-light: #ff8787;
+            --turquoise: #4ecdc4;
+            --charcoal: #424242;
+            --off-white: #fefefe;
+            --gray-soft: #f5f5f7;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            color: var(--charcoal);
+            line-height: 1.6;
+            background: var(--off-white);
+            overflow-x: hidden;
+        }
+
+        /* Subtle background pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(circle at 20% 80%, rgba(67, 56, 202, 0.04) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 107, 107, 0.04) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* HEADER */
+        header {
+            background: rgba(254, 254, 254, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        nav {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--indigo);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-dot {
+            width: 10px;
+            height: 10px;
+            background: linear-gradient(135deg, var(--coral), var(--turquoise));
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.8;
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--charcoal);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--indigo), var(--turquoise));
+            transition: width 0.3s;
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover {
+            color: var(--indigo);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .btn {
+            padding: 0.875rem 1.75rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--indigo);
+            border: 2px solid var(--indigo);
+        }
+
+        .btn-outline:hover {
+            background: var(--indigo);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(67, 56, 202, 0.25);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--coral), var(--coral-light));
+            color: white;
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        /* HERO */
+        .hero {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 5rem 2rem 4rem;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            animation: fadeInUp 0.7s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.1), rgba(99, 102, 241, 0.1));
+            color: var(--indigo);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(67, 56, 202, 0.2);
+        }
+
+        .hero-content h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.15;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content h1 .warm-accent {
+            color: var(--coral);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--charcoal);
+            margin-bottom: 2.5rem;
+            line-height: 1.75;
+            opacity: 0.8;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-visual {
+            position: relative;
+            animation: fadeInUp 0.7s ease 0.2s both;
+        }
+
+        .dashboard-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow:
+                0 10px 40px rgba(67, 56, 202, 0.08),
+                0 2px 8px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(67, 56, 202, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dashboard-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--indigo), var(--turquoise), var(--coral));
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--gray-soft);
+        }
+
+        .card-header h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--indigo);
+        }
+
+        .card-emoji {
+            font-size: 2rem;
+            animation: wave 2s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% {
+                transform: rotate(0deg);
+            }
+            25% {
+                transform: rotate(10deg);
+            }
+            75% {
+                transform: rotate(-10deg);
+            }
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+        }
+
+        .stat-item {
+            background: var(--gray-soft);
+            padding: 1.5rem;
+            border-radius: 16px;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(67, 56, 202, 0.1);
+            border-color: var(--turquoise);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--charcoal);
+            opacity: 0.7;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-value {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--indigo);
+        }
+
+        /* FEATURES */
+        .features {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--gray-soft) 0%, var(--off-white) 100%);
+        }
+
+        .section-header {
+            max-width: 700px;
+            margin: 0 auto 4rem;
+            text-align: center;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(78, 205, 196, 0.1));
+            color: var(--coral);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 107, 107, 0.2);
+        }
+
+        .section-header h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3.25rem;
+            font-weight: 800;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.15rem;
+            color: var(--charcoal);
+            opacity: 0.7;
+        }
+
+        .features-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(67, 56, 202, 0.15);
+            border-color: var(--indigo);
+        }
+
+        .feature-icon {
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, var(--indigo), var(--indigo-light));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 6px 20px rgba(67, 56, 202, 0.25);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+        }
+
+        .feature-card:nth-child(2) .feature-icon {
+            background: linear-gradient(135deg, var(--coral), var(--coral-light));
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.25);
+        }
+
+        .feature-card:nth-child(3) .feature-icon {
+            background: linear-gradient(135deg, var(--turquoise), #7dd3c0);
+            box-shadow: 0 6px 20px rgba(78, 205, 196, 0.25);
+        }
+
+        .feature-card:nth-child(4) .feature-icon {
+            background: linear-gradient(135deg, #6366f1, var(--turquoise));
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.25);
+        }
+
+        .feature-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: var(--charcoal);
+            opacity: 0.75;
+            line-height: 1.7;
+        }
+
+        /* TESTIMONIALS */
+        .testimonials {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .testimonials-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .testimonial-card {
+            background: var(--gray-soft);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            position: relative;
+            border: 2px solid transparent;
+        }
+
+        .testimonial-card::before {
+            content: '❝';
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 5rem;
+            color: var(--coral);
+            opacity: 0.15;
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(255, 107, 107, 0.15);
+            border-color: var(--coral);
+        }
+
+        .stars {
+            color: #fbbf24;
+            margin-bottom: 1.25rem;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-text {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--charcoal);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-top: 2px solid rgba(67, 56, 202, 0.1);
+            padding-top: 1.5rem;
+        }
+
+        .author-avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--indigo), var(--coral));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 12px rgba(67, 56, 202, 0.3);
+        }
+
+        .author-info h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info p {
+            color: var(--charcoal);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* PRICING */
+        .pricing {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--gray-soft) 0%, var(--off-white) 100%);
+        }
+
+        .pricing-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            position: relative;
+            border: 2px solid transparent;
+        }
+
+        .pricing-card.featured {
+            background: linear-gradient(135deg, var(--indigo), var(--indigo-light));
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 12px 35px rgba(67, 56, 202, 0.3);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(67, 56, 202, 0.15);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-8px);
+        }
+
+        .popular-label {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--coral), var(--coral-light));
+            color: white;
+            padding: 0.4rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+        }
+
+        .pricing-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.9rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-card.featured h3 {
+            color: white;
+        }
+
+        .pricing-price {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-price .amount {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3.75rem;
+            font-weight: 800;
+            color: var(--indigo);
+        }
+
+        .pricing-card.featured .amount {
+            color: white;
+        }
+
+        .pricing-price .period {
+            color: var(--charcoal);
+            opacity: 0.7;
+            font-size: 1rem;
+        }
+
+        .pricing-card.featured .period {
+            color: white;
+            opacity: 0.9;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features li {
+            padding: 0.75rem 0;
+            color: var(--charcoal);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            opacity: 0.8;
+        }
+
+        .pricing-card.featured .pricing-features li {
+            color: white;
+            opacity: 1;
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--turquoise);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .btn-pricing {
+            width: 100%;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--charcoal);
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--coral);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.75);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--turquoise);
+        }
+
+        .footer-bottom {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 3rem 1.5rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.75rem;
+            }
+
+            .section-header h2 {
+                font-size: 2.25rem;
+            }
+
+            .features-grid,
+            .testimonials-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <span class="logo-dot"></span>
+                Agenda Pulse
+            </div>
+            <ul class="nav-links">
+                <li><a href="#features">Fonctionnalités</a></li>
+                <li><a href="#pricing">Tarifs</a></li>
+                <li><a href="#" class="btn btn-outline">Connexion</a></li>
+                <li><a href="#" class="btn btn-primary">Inscription</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                ✨ Plateforme intelligente pour professionnels
+            </div>
+            <h1>
+                Simplifiez votre quotidien <span class="warm-accent">professionnel</span>
+            </h1>
+            <p>Une solution complète et intuitive pour gérer votre activité d'indépendant. Agenda, CRM, finances : tout ce dont vous avez besoin, réuni dans une interface moderne et accueillante.</p>
+            <div class="hero-cta">
+                <a href="#" class="btn btn-primary">Essai gratuit 14 jours</a>
+                <a href="#pricing" class="btn btn-outline">Voir les tarifs</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h3>Vue d'ensemble</h3>
+                    <span class="card-emoji">👋</span>
+                </div>
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <div class="stat-label">Rendez-vous</div>
+                        <div class="stat-value">127</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Revenus</div>
+                        <div class="stat-value">8.3K€</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Clients</div>
+                        <div class="stat-value">48</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Satisfaction</div>
+                        <div class="stat-value">94%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="section-header">
+            <span class="section-badge">🚀 Fonctionnalités</span>
+            <h2>Tout pour réussir</h2>
+            <p>Des outils pensés pour vous simplifier la vie et booster votre activité</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">💼</div>
+                <h3>CRM complet</h3>
+                <p>Gérez vos clients avec professionnalisme. Historique détaillé, préférences, notes personnelles et suivi de la fidélisation.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📅</div>
+                <h3>Calendrier intelligent</h3>
+                <p>Planification automatique et synchronisation instantanée. Gérez vos disponibilités en toute simplicité.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💬</div>
+                <h3>Rappels automatiques</h3>
+                <p>SMS et emails personnalisés pour réduire les absences. Configuration simple et efficace.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Finances claires</h3>
+                <p>Tableaux de bord visuels et insights automatiques pour piloter votre activité sereinement.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="section-header">
+            <span class="section-badge">💬 Témoignages</span>
+            <h2>Ils nous font confiance</h2>
+            <p>Découvrez pourquoi des professionnels comme vous choisissent Agenda Pulse</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">Interface intuitive et design agréable. J'ai adopté Agenda Pulse dès le premier jour. Les rappels SMS ont vraiment fait la différence !</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">EB</div>
+                    <div class="author-info">
+                        <h4>Emma Beaumont</h4>
+                        <p>Psychologue</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">Exactement ce que je cherchais : professionnel sans être froid, complet sans être compliqué. Le CRM est particulièrement bien pensé.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">LR</div>
+                    <div class="author-info">
+                        <h4>Lucas Renard</h4>
+                        <p>Coach sportif</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">Un outil qui respecte mon temps et celui de mes clients. Support réactif et fonctionnalités qui évoluent régulièrement. Bravo !</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">NC</div>
+                    <div class="author-info">
+                        <h4>Nathalie Comte</h4>
+                        <p>Kinésithérapeute</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="section-header">
+            <span class="section-badge">💎 Tarifs</span>
+            <h2>Des formules adaptées</h2>
+            <p>Choisissez le plan qui correspond à vos besoins, sans engagement</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Starter</h3>
+                <div class="pricing-price">
+                    <span class="amount">1,90€</span>
+                    <span class="period">/mois</span>
+                </div>
+                <ul class="pricing-features">
+                    <li>Calendrier personnel</li>
+                    <li>Jusqu'à 20 clients</li>
+                    <li>Rappels email</li>
+                    <li>Support par email</li>
+                </ul>
+                <a href="#" class="btn btn-outline btn-pricing">Commencer</a>
+            </div>
+
+            <div class="pricing-card">
+                <h3>Solo</h3>
+                <div class="pricing-price">
+                    <span class="amount">9,90€</span>
+                    <span class="period">/mois</span>
+                </div>
+                <ul class="pricing-features">
+                    <li>Jusqu'à 50 clients</li>
+                    <li>SMS Pay-as-you-go</li>
+                    <li>CRM complet</li>
+                    <li>Statistiques de base</li>
+                    <li>Support prioritaire</li>
+                </ul>
+                <a href="#" class="btn btn-outline btn-pricing">Commencer</a>
+            </div>
+
+            <div class="pricing-card featured">
+                <span class="popular-label">Populaire</span>
+                <h3>Pro</h3>
+                <div class="pricing-price">
+                    <span class="amount">19,90€</span>
+                    <span class="period">/mois</span>
+                </div>
+                <ul class="pricing-features">
+                    <li>Clients illimités</li>
+                    <li>SMS illimités</li>
+                    <li>Campagnes automatisées</li>
+                    <li>Statistiques avancées</li>
+                    <li>Support téléphonique</li>
+                </ul>
+                <a href="#" class="btn btn-primary btn-pricing">Commencer</a>
+            </div>
+
+            <div class="pricing-card">
+                <h3>Multi</h3>
+                <div class="pricing-price">
+                    <span class="amount">59,90€</span>
+                    <span class="period">/mois</span>
+                </div>
+                <ul class="pricing-features">
+                    <li>Jusqu'à 5 utilisateurs</li>
+                    <li>Gestion d'équipe</li>
+                    <li>Calendrier partagé</li>
+                    <li>Dashboard consolidé</li>
+                    <li>Gestionnaire dédié</li>
+                </ul>
+                <a href="#" class="btn btn-outline btn-pricing">Commencer</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Agenda Pulse</h4>
+                <p style="color: rgba(255,255,255,0.75); line-height: 1.8;">La solution complète pour gérer votre activité professionnelle avec efficacité et sérénité.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Solutions</h4>
+                <ul>
+                    <li><a href="#">Agenda digital</a></li>
+                    <li><a href="#">CRM professionnel</a></li>
+                    <li><a href="#">Rappels SMS</a></li>
+                    <li><a href="#">Gestion d'équipe</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Ressources</h4>
+                <ul>
+                    <li><a href="#">Centre d'aide</a></li>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Entreprise</h4>
+                <ul>
+                    <li><a href="#">À propos</a></li>
+                    <li><a href="#">Carrières</a></li>
+                    <li><a href="#">Mentions légales</a></li>
+                    <li><a href="#">Confidentialité</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Agenda Pulse. Tous droits réservés.</p>
+        </div>
+    </footer>
+</body>
+</html>

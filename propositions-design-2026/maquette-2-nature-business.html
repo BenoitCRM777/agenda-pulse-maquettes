@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda Pulse - Nature Business</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --forest: #047857;
+            --sand: #d4a574;
+            --teal: #0e7490;
+            --lime: #65a30d;
+            --neutral: #78716c;
+            --neutral-light: #fafaf9;
+            --cream: #f5f3f0;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: var(--neutral);
+            line-height: 1.8;
+            background: var(--neutral-light);
+            overflow-x: hidden;
+        }
+
+        /* Organic background texture */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(circle at 20% 50%, rgba(4, 120, 87, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(212, 165, 116, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Organic wave shapes */
+        .wave-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(180deg, var(--cream) 0%, transparent 100%);
+            clip-path: ellipse(100% 100% at 50% 0%);
+        }
+
+        /* HEADER */
+        header {
+            background: rgba(250, 250, 249, 0.98);
+            backdrop-filter: blur(12px);
+            border-bottom: 2px solid var(--forest);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.8s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        nav {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Lora', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--forest);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-leaf {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--forest), var(--lime));
+            border-radius: 50% 0 50% 50%;
+            transform: rotate(-45deg);
+            display: inline-block;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--neutral);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--sand);
+            border-radius: 2px;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--forest);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .btn {
+            padding: 0.875rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.4s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-family: 'Nunito', sans-serif;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .btn-outline {
+            background: white;
+            color: var(--forest);
+            border: 2px solid var(--forest);
+        }
+
+        .btn-outline:hover {
+            background: var(--forest);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(4, 120, 87, 0.25);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--forest), var(--lime));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(4, 120, 87, 0.35);
+            filter: brightness(1.1);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 5rem 2rem 4rem;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            position: relative;
+        }
+
+        .organic-blob {
+            position: absolute;
+            top: -100px;
+            right: -150px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(101, 163, 13, 0.12) 0%, transparent 70%);
+            border-radius: 40% 60% 70% 30% / 50% 60% 40% 50%;
+            animation: blob 20s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes blob {
+            0%, 100% {
+                border-radius: 40% 60% 70% 30% / 50% 60% 40% 50%;
+            }
+            25% {
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            }
+            50% {
+                border-radius: 30% 70% 60% 40% / 40% 70% 30% 60%;
+            }
+            75% {
+                border-radius: 70% 30% 40% 60% / 30% 50% 60% 70%;
+            }
+        }
+
+        .hero-content {
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(4, 120, 87, 0.1), rgba(101, 163, 13, 0.1));
+            color: var(--forest);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            border: 2px solid rgba(4, 120, 87, 0.2);
+        }
+
+        .hero-content h1 {
+            font-family: 'Lora', serif;
+            font-size: 3.8rem;
+            font-weight: 700;
+            line-height: 1.15;
+            color: var(--forest);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content h1 .organic-underline {
+            position: relative;
+            display: inline-block;
+            color: var(--sand);
+        }
+
+        .hero-content h1 .organic-underline::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: -5px;
+            right: -5px;
+            height: 15px;
+            background: linear-gradient(90deg, transparent, rgba(212, 165, 116, 0.3), transparent);
+            border-radius: 50px;
+            z-index: -1;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--neutral);
+            margin-bottom: 2.5rem;
+            line-height: 1.9;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-visual {
+            position: relative;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .nature-card {
+            background: white;
+            border-radius: 40px;
+            padding: 2.5rem;
+            box-shadow:
+                0 10px 30px rgba(4, 120, 87, 0.1),
+                0 0 0 1px rgba(4, 120, 87, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nature-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(212, 165, 116, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 3px solid var(--cream);
+        }
+
+        .card-header h3 {
+            font-family: 'Lora', serif;
+            font-size: 1.5rem;
+            color: var(--forest);
+        }
+
+        .wellness-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--lime), var(--forest));
+            border-radius: 50% 50% 50% 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            transform: rotate(45deg);
+        }
+
+        .wellness-icon span {
+            transform: rotate(-45deg);
+        }
+
+        .wellness-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .wellness-stat {
+            background: var(--cream);
+            padding: 1.5rem;
+            border-radius: 25px;
+            border-left: 5px solid var(--teal);
+            transition: all 0.3s;
+        }
+
+        .wellness-stat:nth-child(2) { border-left-color: var(--sand); }
+        .wellness-stat:nth-child(3) { border-left-color: var(--lime); }
+        .wellness-stat:nth-child(4) { border-left-color: var(--forest); }
+
+        .wellness-stat:hover {
+            transform: translateX(5px);
+            box-shadow: -5px 5px 15px rgba(4, 120, 87, 0.1);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--neutral);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-value {
+            font-family: 'Lora', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--forest);
+        }
+
+        /* FEATURES */
+        .features {
+            background: white;
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: var(--neutral-light);
+            clip-path: ellipse(80% 100% at 50% 0%);
+        }
+
+        .section-header {
+            max-width: 700px;
+            margin: 0 auto 4rem;
+            text-align: center;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: rgba(4, 120, 87, 0.1);
+            color: var(--forest);
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-header h2 {
+            font-family: 'Lora', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--forest);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.15rem;
+            color: var(--neutral);
+        }
+
+        .features-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .feature-card {
+            background: var(--cream);
+            padding: 2.5rem;
+            border-radius: 30px;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(4, 120, 87, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            transition: all 0.4s;
+        }
+
+        .feature-card:hover::before {
+            top: -20px;
+            left: -20px;
+            width: 150px;
+            height: 150px;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(4, 120, 87, 0.15);
+            background: white;
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--forest), var(--lime));
+            border-radius: 50% 50% 0 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 20px rgba(4, 120, 87, 0.2);
+            transform: rotate(45deg);
+        }
+
+        .feature-icon span {
+            transform: rotate(-45deg);
+        }
+
+        .feature-card:nth-child(2) .feature-icon {
+            background: linear-gradient(135deg, var(--teal), var(--sand));
+            border-radius: 50% 0 50% 50%;
+        }
+
+        .feature-card:nth-child(3) .feature-icon {
+            background: linear-gradient(135deg, var(--sand), var(--lime));
+            border-radius: 0 50% 50% 50%;
+        }
+
+        .feature-card:nth-child(4) .feature-icon {
+            background: linear-gradient(135deg, var(--lime), var(--teal));
+            border-radius: 50% 50% 50% 0;
+        }
+
+        .feature-card h3 {
+            font-family: 'Lora', serif;
+            font-size: 1.6rem;
+            color: var(--forest);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: var(--neutral);
+            line-height: 1.8;
+        }
+
+        /* TESTIMONIALS */
+        .testimonials {
+            padding: 6rem 2rem;
+            background: var(--cream);
+            position: relative;
+        }
+
+        .testimonials-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 35px;
+            box-shadow: 0 10px 30px rgba(4, 120, 87, 0.08);
+            position: relative;
+            transition: all 0.4s;
+            border: 3px solid transparent;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(4, 120, 87, 0.15);
+            border-color: var(--sand);
+        }
+
+        .quote-mark {
+            position: absolute;
+            top: -20px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--forest), var(--lime));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-family: 'Lora', serif;
+            box-shadow: 0 5px 15px rgba(4, 120, 87, 0.3);
+        }
+
+        .stars {
+            color: var(--sand);
+            margin: 1rem 0;
+            font-size: 1.2rem;
+        }
+
+        .testimonial-quote {
+            font-size: 1.1rem;
+            color: var(--neutral);
+            line-height: 1.9;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .author-avatar {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--sand), var(--lime));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.3rem;
+            border: 3px solid white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .author-info h4 {
+            font-family: 'Lora', serif;
+            color: var(--forest);
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info p {
+            color: var(--neutral);
+            font-size: 0.9rem;
+        }
+
+        /* PRICING */
+        .pricing {
+            padding: 6rem 2rem;
+            background: white;
+            position: relative;
+        }
+
+        .pricing::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: var(--cream);
+            clip-path: ellipse(70% 100% at 50% 0%);
+        }
+
+        .pricing-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background: var(--cream);
+            border-radius: 35px;
+            padding: 2.5rem 2rem;
+            border: 3px solid transparent;
+            transition: all 0.4s;
+            position: relative;
+        }
+
+        .pricing-card.popular {
+            background: white;
+            border-color: var(--forest);
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(4, 120, 87, 0.2);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(4, 120, 87, 0.15);
+        }
+
+        .pricing-card.popular:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--forest), var(--lime));
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 12px rgba(4, 120, 87, 0.3);
+        }
+
+        .pricing-card h3 {
+            font-family: 'Lora', serif;
+            font-size: 2rem;
+            color: var(--forest);
+            margin-bottom: 1rem;
+        }
+
+        .pricing-price {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-price .amount {
+            font-family: 'Lora', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--forest);
+        }
+
+        .pricing-price .period {
+            color: var(--neutral);
+            font-size: 1rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features li {
+            padding: 0.75rem 0;
+            color: var(--neutral);
+            display: flex;
+            align-items: start;
+            gap: 0.75rem;
+        }
+
+        .pricing-features li::before {
+            content: '🌿';
+            font-size: 1.1rem;
+        }
+
+        .btn-pricing {
+            width: 100%;
+            padding: 1.1rem;
+            text-align: center;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--forest);
+            color: white;
+            padding: 4rem 2rem 2rem;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: white;
+            clip-path: ellipse(60% 100% at 50% 0%);
+        }
+
+        .footer-content {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+            padding-top: 2rem;
+        }
+
+        .footer-section h4 {
+            font-family: 'Lora', serif;
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            color: var(--sand);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--sand);
+        }
+
+        .footer-bottom {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 3rem 1.5rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .features-grid,
+            .testimonials-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.popular {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <span class="logo-leaf"></span>
+                AgendaPulse
+            </div>
+            <ul class="nav-links">
+                <li><a href="#fonctionnalites">Fonctionnalités</a></li>
+                <li><a href="#tarifs">Tarifs</a></li>
+                <li><a href="#" class="btn btn-outline">Connexion</a></li>
+                <li><a href="#" class="btn btn-primary">Inscription</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="organic-blob"></div>
+        <div class="hero-content">
+            <span class="hero-badge">✨ Pour les professionnels du bien-être</span>
+            <h1>Cultivez votre <span class="organic-underline">sérénité</span> professionnelle</h1>
+            <p>Une solution naturellement intuitive pour gérer votre activité. Conçue pour les thérapeutes, coachs et praticiens qui cherchent l'équilibre entre professionnalisme et humanité.</p>
+            <div class="hero-cta">
+                <a href="#" class="btn btn-primary">Essai gratuit 14 jours</a>
+                <a href="#tarifs" class="btn btn-outline">Découvrir les tarifs</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="nature-card">
+                <div class="card-header">
+                    <h3>Votre espace bien-être</h3>
+                    <div class="wellness-icon"><span>☀️</span></div>
+                </div>
+                <div class="wellness-stats">
+                    <div class="wellness-stat">
+                        <div class="stat-label">Clients</div>
+                        <div class="stat-value">48</div>
+                    </div>
+                    <div class="wellness-stat">
+                        <div class="stat-label">Séances</div>
+                        <div class="stat-value">127</div>
+                    </div>
+                    <div class="wellness-stat">
+                        <div class="stat-label">Revenus</div>
+                        <div class="stat-value">8.3K€</div>
+                    </div>
+                    <div class="wellness-stat">
+                        <div class="stat-label">Satisfaction</div>
+                        <div class="stat-value">94%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="fonctionnalites">
+        <div class="section-header">
+            <span class="section-tag">Outils essentiels</span>
+            <h2>Tout pour grandir naturellement</h2>
+            <p>Des fonctionnalités pensées pour respecter votre rythme et celui de vos clients</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><span>🌱</span></div>
+                <h3>CRM humain</h3>
+                <p>Cultivez des relations authentiques avec vos clients. Historique complet, préférences, et suivi personnalisé pour une expérience unique.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><span>📆</span></div>
+                <h3>Agenda organique</h3>
+                <p>Planification fluide qui s'adapte à votre rythme. Synchronisation naturelle et gestion intelligente de vos disponibilités.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><span>🔔</span></div>
+                <h3>Rappels bienveillants</h3>
+                <p>Notifications SMS et email douces mais efficaces. Réduisez les absences tout en préservant la relation de confiance.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><span>💚</span></div>
+                <h3>Finances équilibrées</h3>
+                <p>Vue claire de votre activité sans stress. Tableaux de bord apaisants pour piloter sereinement votre croissance.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="section-header">
+            <span class="section-tag">Témoignages</span>
+            <h2>Ils ont trouvé leur équilibre</h2>
+            <p>Découvrez comment Agenda Pulse accompagne les professionnels du bien-être</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="quote-mark">"</div>
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-quote">Enfin un outil qui comprend mon rythme de travail. L'interface est apaisante et intuitive. Je gagne un temps précieux que je peux consacrer à mes clients.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">CL</div>
+                    <div class="author-info">
+                        <h4>Claire Lefèvre</h4>
+                        <p>Naturopathe</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="quote-mark">"</div>
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-quote">Les rappels automatiques ont transformé mon organisation. Plus d'oublis, moins de stress. Mes clients apprécient aussi la simplicité du système.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">PM</div>
+                    <div class="author-info">
+                        <h4>Pierre Moreau</h4>
+                        <p>Ostéopathe</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="quote-mark">"</div>
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-quote">Une solution qui respecte mes valeurs. Design apaisant, fonctionnalités essentielles sans superflu. Ma pratique s'est professionnalisée tout en gardant son âme.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">AL</div>
+                    <div class="author-info">
+                        <h4>Annie Laurent</h4>
+                        <p>Yoga Thérapeute</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="tarifs">
+        <div class="section-header">
+            <span class="section-tag">Tarification</span>
+            <h2>Choisissez votre rythme</h2>
+            <p>Des formules transparentes qui grandissent avec vous, sans engagement</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Starter</h3>
+                <div class="pricing-price">
+                    <span class="amount">1,90€</span>
+                    <span class="period">/mois</span>
+                </div>
+                <ul class="pricing-features">
+                    <li>Calendrier personnel</li>
+                    <li>Jusqu'à 20 clients</li>
+                    <li>Rappels email</li>
+                    <li>Support par email</li>
+                </ul>
+                <a href="#" class="btn btn-outline btn-pricing">Commencer</a>
+            </div>
+
+            <div class="pricing-card">
+                <h3>Solo</h3>
+                <div class="pricing-price">
+                    <span class="amount">9,90€</span>
+                    <span class="period">/mois</span>
+                </div>
+                <ul class="pricing-features">
+                    <li>Jusqu'à 50 clients</li>
+                    <li>SMS Pay-as-you-go</li>
+                    <li>CRM complet</li>
+                    <li>Statistiques de base</li>
+                    <li>Support prioritaire</li>
+                </ul>
+                <a href="#" class="btn btn-outline btn-pricing">Commencer</a>
+            </div>
+
+            <div class="pricing-card popular">
+                <span class="popular-badge">Le plus choisi</span>
+                <h3>Pro</h3>
+                <div class="pricing-price">
+                    <span class="amount">19,90€</span>
+                    <span class="period">/mois</span>
+                </div>
+                <ul class="pricing-features">
+                    <li>Clients illimités</li>
+                    <li>SMS illimités</li>
+                    <li>Campagnes automatisées</li>
+                    <li>Statistiques avancées</li>
+                    <li>Support téléphonique</li>
+                </ul>
+                <a href="#" class="btn btn-primary btn-pricing">Commencer</a>
+            </div>
+
+            <div class="pricing-card">
+                <h3>Multi</h3>
+                <div class="pricing-price">
+                    <span class="amount">59,90€</span>
+                    <span class="period">/mois</span>
+                </div>
+                <ul class="pricing-features">
+                    <li>Jusqu'à 5 utilisateurs</li>
+                    <li>Gestion d'équipe</li>
+                    <li>Calendrier partagé</li>
+                    <li>Dashboard consolidé</li>
+                    <li>Gestionnaire dédié</li>
+                </ul>
+                <a href="#" class="btn btn-outline btn-pricing">Commencer</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>AgendaPulse</h4>
+                <p style="color: rgba(255,255,255,0.8); line-height: 1.8;">La plateforme intuitive pour les professionnels du bien-être qui souhaitent cultiver leur activité en harmonie.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Solutions</h4>
+                <ul>
+                    <li><a href="#">Pour thérapeutes</a></li>
+                    <li><a href="#">Pour coachs</a></li>
+                    <li><a href="#">Pour praticiens</a></li>
+                    <li><a href="#">Gestion d'équipe</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Ressources</h4>
+                <ul>
+                    <li><a href="#">Centre d'aide</a></li>
+                    <li><a href="#">Blog bien-être</a></li>
+                    <li><a href="#">Guides pratiques</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Entreprise</h4>
+                <ul>
+                    <li><a href="#">Notre histoire</a></li>
+                    <li><a href="#">Nos valeurs</a></li>
+                    <li><a href="#">Mentions légales</a></li>
+                    <li><a href="#">Confidentialité</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Agenda Pulse. Créé avec soin pour les professionnels du bien-être.</p>
+        </div>
+    </footer>
+</body>
+</html>

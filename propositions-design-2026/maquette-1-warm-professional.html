@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda Pulse - Warm Professional</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --slate: #334155;
+            --terracotta: #ea580c;
+            --cyan: #06b6d4;
+            --sage: #84cc16;
+            --neutral: #94a3b8;
+            --neutral-light: #f8fafc;
+            --cream: #fef9f3;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: var(--slate);
+            line-height: 1.7;
+            background: var(--cream);
+            overflow-x: hidden;
+        }
+
+        /* Texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(51, 65, 85, 0.015) 2px,
+                    rgba(51, 65, 85, 0.015) 4px
+                );
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* HEADER */
+        header {
+            background: rgba(248, 250, 252, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(51, 65, 85, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.6s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--slate);
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--terracotta);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--slate);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--terracotta);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--terracotta);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--slate);
+            border: 2px solid var(--slate);
+        }
+
+        .btn-outline:hover {
+            background: var(--slate);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(51, 65, 85, 0.2);
+        }
+
+        .btn-primary {
+            background: var(--terracotta);
+            color: white;
+            box-shadow: 0 2px 8px rgba(234, 88, 12, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: #dc5809;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(234, 88, 12, 0.35);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 6rem 2rem 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--slate);
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .hero-content h1 .highlight {
+            color: var(--terracotta);
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-content h1 .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 8px;
+            left: -4px;
+            right: -4px;
+            height: 12px;
+            background: rgba(234, 88, 12, 0.15);
+            z-index: -1;
+            transform: skewY(-1deg);
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: var(--neutral);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-visual {
+            position: relative;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .dashboard-preview {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow:
+                0 0 1px rgba(51, 65, 85, 0.1),
+                0 20px 40px rgba(51, 65, 85, 0.1),
+                0 40px 80px rgba(234, 88, 12, 0.08);
+            border: 1px solid rgba(51, 65, 85, 0.08);
+            position: relative;
+        }
+
+        .dashboard-preview::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(234, 88, 12, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--neutral-light);
+        }
+
+        .dashboard-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--slate);
+        }
+
+        .dashboard-date {
+            font-size: 0.9rem;
+            color: var(--neutral);
+            font-weight: 600;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-card {
+            background: var(--neutral-light);
+            padding: 1.25rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--cyan);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(6, 182, 212, 0.15);
+        }
+
+        .stat-card:nth-child(2) {
+            border-left-color: var(--terracotta);
+        }
+
+        .stat-card:nth-child(3) {
+            border-left-color: var(--sage);
+        }
+
+        .stat-card:nth-child(4) {
+            border-left-color: var(--slate);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--neutral);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--slate);
+        }
+
+        /* FEATURES SECTION */
+        .features {
+            background: white;
+            padding: 6rem 2rem;
+            margin-top: 4rem;
+            position: relative;
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--terracotta), transparent);
+        }
+
+        .section-header {
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            text-align: center;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--slate);
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .section-header p {
+            font-size: 1.15rem;
+            color: var(--neutral);
+        }
+
+        .features-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            border-radius: 16px;
+            background: var(--neutral-light);
+            border: 2px solid transparent;
+            transition: all 0.4s;
+            animation: fadeInUp 0.6s ease both;
+        }
+
+        .feature-card:nth-child(1) { animation-delay: 0.1s; }
+        .feature-card:nth-child(2) { animation-delay: 0.2s; }
+        .feature-card:nth-child(3) { animation-delay: 0.3s; }
+        .feature-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--terracotta);
+            box-shadow: 0 12px 30px rgba(234, 88, 12, 0.15);
+            background: white;
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--terracotta), #ff8c42);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 12px rgba(234, 88, 12, 0.2);
+        }
+
+        .feature-card:nth-child(2) .feature-icon {
+            background: linear-gradient(135deg, var(--cyan), #38bdf8);
+        }
+
+        .feature-card:nth-child(3) .feature-icon {
+            background: linear-gradient(135deg, var(--sage), #a3e635);
+        }
+
+        .feature-card:nth-child(4) .feature-icon {
+            background: linear-gradient(135deg, var(--slate), #475569);
+        }
+
+        .feature-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--slate);
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-card p {
+            color: var(--neutral);
+            line-height: 1.7;
+        }
+
+        /* TESTIMONIALS */
+        .testimonials {
+            padding: 6rem 2rem;
+            background: var(--cream);
+        }
+
+        .testimonials-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            border-left: 4px solid var(--terracotta);
+            box-shadow: 0 4px 16px rgba(51, 65, 85, 0.08);
+            transition: all 0.4s;
+            animation: fadeInUp 0.6s ease both;
+        }
+
+        .testimonial-card:nth-child(1) { animation-delay: 0.1s; }
+        .testimonial-card:nth-child(2) { animation-delay: 0.2s; }
+        .testimonial-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(234, 88, 12, 0.15);
+        }
+
+        .testimonial-quote {
+            font-size: 1.1rem;
+            color: var(--slate);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--terracotta), #ff8c42);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .author-info h4 {
+            color: var(--slate);
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info p {
+            color: var(--neutral);
+            font-size: 0.9rem;
+        }
+
+        .stars {
+            color: #fbbf24;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* PRICING */
+        .pricing {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .pricing-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background: var(--neutral-light);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            border: 3px solid transparent;
+            transition: all 0.4s;
+            position: relative;
+            animation: fadeInUp 0.6s ease both;
+        }
+
+        .pricing-card:nth-child(1) { animation-delay: 0.1s; }
+        .pricing-card:nth-child(2) { animation-delay: 0.2s; }
+        .pricing-card:nth-child(3) { animation-delay: 0.3s; }
+        .pricing-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .pricing-card.popular {
+            background: white;
+            border-color: var(--terracotta);
+            transform: scale(1.05);
+            box-shadow: 0 12px 40px rgba(234, 88, 12, 0.2);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(51, 65, 85, 0.15);
+        }
+
+        .pricing-card.popular:hover {
+            transform: scale(1.05) translateY(-8px);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: var(--terracotta);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .pricing-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--slate);
+            margin-bottom: 1rem;
+        }
+
+        .pricing-price {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-price .amount {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--terracotta);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .pricing-price .period {
+            color: var(--neutral);
+            font-size: 1rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features li {
+            padding: 0.75rem 0;
+            color: var(--slate);
+            display: flex;
+            align-items: start;
+            gap: 0.75rem;
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--sage);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .btn-pricing {
+            width: 100%;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--slate);
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--terracotta);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 3rem 1.5rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .features-grid,
+            .testimonials-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.popular {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Agenda<span>Pulse</span></div>
+            <ul class="nav-links">
+                <li><a href="#fonctionnalites">Fonctionnalités</a></li>
+                <li><a href="#tarifs">Tarifs</a></li>
+                <li><a href="#" class="btn btn-outline">Connexion</a></li>
+                <li><a href="#" class="btn btn-primary">Inscription</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>La solution <span class="highlight">tout-en-un</span> pour les indépendants</h1>
+            <p>Gérez facilement votre agenda, vos clients et vos finances. Une plateforme pensée pour les thérapeutes, coachs et consultants qui veulent se concentrer sur l'essentiel.</p>
+            <div class="hero-cta">
+                <a href="#" class="btn btn-primary">Essai gratuit 14 jours</a>
+                <a href="#tarifs" class="btn btn-outline">Découvrir les tarifs</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="dashboard-preview">
+                <div class="dashboard-header">
+                    <h3>Tableau de bord</h3>
+                    <span class="dashboard-date">Janvier 2026</span>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-label">Rendez-vous</div>
+                        <div class="stat-value">127</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Revenus</div>
+                        <div class="stat-value">8,340€</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Clients actifs</div>
+                        <div class="stat-value">48</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Fidélisation</div>
+                        <div class="stat-value">87%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="fonctionnalites">
+        <div class="section-header">
+            <h2>Tout ce dont vous avez besoin</h2>
+            <p>Des outils professionnels pensés pour simplifier votre quotidien et développer votre activité</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">👥</div>
+                <h3>CRM intelligent</h3>
+                <p>Gérez vos clients, leur historique, leurs préférences et fidélisez-les avec des outils dédiés.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📅</div>
+                <h3>Calendrier intelligent</h3>
+                <p>Planification automatique, synchronisation multi-appareils et gestion des disponibilités en temps réel.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Rappels SMS</h3>
+                <p>Réduisez les absences avec des rappels automatiques par SMS et email personnalisables.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3>Gestion financière</h3>
+                <p>Suivez vos revenus, analysez vos performances et optimisez votre rentabilité en un coup d'œil.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="section-header">
+            <h2>Ce que disent nos utilisateurs</h2>
+            <p>Rejoignez des centaines de professionnels qui ont transformé leur activité</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-quote">"Agenda Pulse a complètement transformé ma pratique. Je suis plus organisée et je peux enfin me concentrer sur mes clients plutôt que sur l'administratif."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">SL</div>
+                    <div class="author-info">
+                        <h4>Sophie Lemoine</h4>
+                        <p>Coach de vie</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-quote">"Un outil simple et efficace. Les rappels SMS ont réduit mes absences de 80%. Je recommande vivement pour tous les thérapeutes."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">JM</div>
+                    <div class="author-info">
+                        <h4>Jean Martin</h4>
+                        <p>Massothérapeute</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-quote">"Grâce à Agenda Pulse, j'ai augmenté mes revenus de 35% en optimisant mon planning. Le CRM m'aide à mieux connaître mes clients."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">MD</div>
+                    <div class="author-info">
+                        <h4>Marie Dubois</h4>
+                        <p>Hypnothérapeute</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="tarifs">
+        <div class="section-header">
+            <h2>Tarifs simples et transparents</h2>
+            <p>Choisissez le plan adapté à votre activité, sans engagement</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Starter</h3>
+                <div class="pricing-price">
+                    <span class="amount">1,90€</span>
+                    <span class="period">/mois</span>
+                </div>
+                <ul class="pricing-features">
+                    <li>Calendrier personnel</li>
+                    <li>Jusqu'à 20 clients</li>
+                    <li>Rappels email</li>
+                    <li>Support par email</li>
+                </ul>
+                <a href="#" class="btn btn-outline btn-pricing">Commencer</a>
+            </div>
+
+            <div class="pricing-card">
+                <h3>Solo</h3>
+                <div class="pricing-price">
+                    <span class="amount">9,90€</span>
+                    <span class="period">/mois</span>
+                </div>
+                <ul class="pricing-features">
+                    <li>Jusqu'à 50 clients</li>
+                    <li>SMS Pay-as-you-go</li>
+                    <li>CRM complet</li>
+                    <li>Statistiques de base</li>
+                    <li>Support prioritaire</li>
+                </ul>
+                <a href="#" class="btn btn-outline btn-pricing">Commencer</a>
+            </div>
+
+            <div class="pricing-card popular">
+                <span class="popular-badge">Populaire</span>
+                <h3>Pro</h3>
+                <div class="pricing-price">
+                    <span class="amount">19,90€</span>
+                    <span class="period">/mois</span>
+                </div>
+                <ul class="pricing-features">
+                    <li>Clients illimités</li>
+                    <li>SMS illimités</li>
+                    <li>Campagnes automatisées</li>
+                    <li>Statistiques avancées</li>
+                    <li>Support téléphonique</li>
+                </ul>
+                <a href="#" class="btn btn-primary btn-pricing">Commencer</a>
+            </div>
+
+            <div class="pricing-card">
+                <h3>Multi</h3>
+                <div class="pricing-price">
+                    <span class="amount">59,90€</span>
+                    <span class="period">/mois</span>
+                </div>
+                <ul class="pricing-features">
+                    <li>Jusqu'à 5 utilisateurs</li>
+                    <li>Gestion d'équipe</li>
+                    <li>Calendrier partagé</li>
+                    <li>Dashboard consolidé</li>
+                    <li>Gestionnaire dédié</li>
+                </ul>
+                <a href="#" class="btn btn-outline btn-pricing">Commencer</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Agenda<span style="color: var(--terracotta)">Pulse</span></h4>
+                <p style="color: rgba(255,255,255,0.7); line-height: 1.7;">La solution complète pour gérer votre activité d'indépendant avec simplicité et efficacité.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Solutions</h4>
+                <ul>
+                    <li><a href="#">Agenda numérique</a></li>
+                    <li><a href="#">CRM indépendants</a></li>
+                    <li><a href="#">Rappels SMS</a></li>
+                    <li><a href="#">Gestion d'équipe</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Centre d'aide</a></li>
+                    <li><a href="#">Tarifs</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Entreprise</h4>
+                <ul>
+                    <li><a href="#">À propos</a></li>
+                    <li><a href="#">Carrières</a></li>
+                    <li><a href="#">Mentions légales</a></li>
+                    <li><a href="#">Confidentialité</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Agenda Pulse. Tous droits réservés.</p>
+        </div>
+    </footer>
+</body>
+</html>

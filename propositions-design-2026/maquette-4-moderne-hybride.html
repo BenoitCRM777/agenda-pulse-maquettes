@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda Pulse - Moderne Hybride</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --teal: #0f766e;
+            --teal-light: #14b8a6;
+            --ivory: #fef7e9;
+            --coral: #ec4899;
+            --amber: #f59e0b;
+            --slate: #475569;
+            --slate-light: #cbd5e1;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--slate);
+            line-height: 1.6;
+            background: linear-gradient(135deg, #fef7e9 0%, #fff 100%);
+            overflow-x: hidden;
+        }
+
+        /* Animated background blobs */
+        .bg-blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            z-index: -1;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .blob-1 {
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, var(--teal), var(--teal-light));
+            top: -200px;
+            left: -200px;
+        }
+
+        .blob-2 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--coral), #f472b6);
+            bottom: -150px;
+            right: -150px;
+            animation-delay: -10s;
+        }
+
+        .blob-3 {
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(135deg, var(--amber), #fbbf24);
+            top: 50%;
+            right: 10%;
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(50px, -50px) scale(1.1);
+            }
+            66% {
+                transform: translate(-30px, 30px) scale(0.9);
+            }
+        }
+
+        /* HEADER */
+        header {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(15, 118, 110, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--teal), var(--teal-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--teal), var(--coral));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--slate);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--coral), var(--amber));
+            border-radius: 3px;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--teal);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .btn {
+            padding: 0.875rem 1.75rem;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--teal);
+            border: 2px solid var(--teal);
+        }
+
+        .btn-outline:hover {
+            background: var(--teal);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(15, 118, 110, 0.3);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--coral), #f472b6);
+            color: white;
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4);
+        }
+
+        /* HERO */
+        .hero {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 5rem 2rem 4rem;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-content {
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(245, 158, 11, 0.1));
+            color: var(--coral);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+            border: 2px solid rgba(236, 72, 153, 0.2);
+        }
+
+        .badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--coral);
+            border-radius: 50%;
+            animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+
+        @keyframes ping {
+            75%, 100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            color: var(--slate);
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--teal), var(--coral));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: var(--slate);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            opacity: 0.8;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-visual {
+            position: relative;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border-radius: 32px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow:
+                0 20px 50px rgba(15, 118, 110, 0.15),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--teal), var(--coral), var(--amber));
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--teal);
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--coral), var(--amber));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 8px 20px rgba(236, 72, 153, 0.3);
+            animation: bounce 3s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .metric {
+            background: linear-gradient(135deg, rgba(15, 118, 110, 0.05), rgba(236, 72, 153, 0.05));
+            padding: 1.5rem;
+            border-radius: 20px;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .metric:hover {
+            border-color: var(--coral);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(236, 72, 153, 0.2);
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--slate);
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--teal), var(--coral));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* FEATURES */
+        .features {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .section-header {
+            max-width: 700px;
+            margin: 0 auto 4rem;
+            text-align: center;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(245, 158, 11, 0.1));
+            color: var(--coral);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            border: 2px solid rgba(236, 72, 153, 0.2);
+        }
+
+        .section-header h2 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--slate);
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--slate);
+            opacity: 0.8;
+        }
+
+        .features-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 28px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--teal), var(--coral));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(15, 118, 110, 0.2);
+            border-color: var(--teal);
+        }
+
+        .feature-icon-box {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--teal), var(--teal-light));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 10px 25px rgba(15, 118, 110, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover .feature-icon-box {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .feature-card:nth-child(2) .feature-icon-box {
+            background: linear-gradient(135deg, var(--coral), #f472b6);
+        }
+
+        .feature-card:nth-child(3) .feature-icon-box {
+            background: linear-gradient(135deg, var(--amber), #fbbf24);
+        }
+
+        .feature-card:nth-child(4) .feature-icon-box {
+            background: linear-gradient(135deg, var(--teal), var(--coral));
+        }
+
+        .feature-card h3 {
+            font-size: 1.75rem;
+            font-weight: 900;
+            color: var(--slate);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: var(--slate);
+            line-height: 1.7;
+            opacity: 0.8;
+        }
+
+        /* TESTIMONIALS */
+        .testimonials {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, rgba(15, 118, 110, 0.03), rgba(236, 72, 153, 0.03));
+        }
+
+        .testimonials-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            padding: 3rem;
+            border-radius: 28px;
+            border: 2px solid rgba(15, 118, 110, 0.1);
+            box-shadow: 0 15px 35px rgba(15, 118, 110, 0.1);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 30px;
+            font-size: 8rem;
+            font-weight: 900;
+            color: var(--coral);
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(15, 118, 110, 0.15);
+            border-color: var(--coral);
+        }
+
+        .stars {
+            color: var(--amber);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--slate);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-top: 2px solid rgba(15, 118, 110, 0.1);
+            padding-top: 1.5rem;
+        }
+
+        .author-avatar {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--teal), var(--coral));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 900;
+            font-size: 1.25rem;
+            box-shadow: 0 5px 15px rgba(15, 118, 110, 0.3);
+        }
+
+        .author-info h4 {
+            font-weight: 900;
+            color: var(--slate);
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info p {
+            color: var(--slate);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* PRICING */
+        .pricing {
+            padding: 6rem 2rem;
+        }
+
+        .pricing-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border-radius: 28px;
+            padding: 2.5rem 2rem;
+            border: 2px solid rgba(15, 118, 110, 0.1);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        .pricing-card.popular {
+            background: linear-gradient(135deg, rgba(15, 118, 110, 0.95), rgba(20, 184, 166, 0.95));
+            color: white;
+            border-color: var(--amber);
+            transform: scale(1.05);
+            box-shadow: 0 20px 50px rgba(15, 118, 110, 0.3);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(15, 118, 110, 0.2);
+        }
+
+        .pricing-card.popular:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--coral), var(--amber));
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(236, 72, 153, 0.4);
+        }
+
+        .pricing-card h3 {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-card.popular h3 {
+            color: white;
+        }
+
+        .pricing-price {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-price .amount {
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--teal), var(--coral));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .pricing-card.popular .amount {
+            background: linear-gradient(135deg, white, var(--amber));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .pricing-price .period {
+            color: var(--slate);
+            font-size: 1rem;
+        }
+
+        .pricing-card.popular .period {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features li {
+            padding: 0.75rem 0;
+            color: var(--slate);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .pricing-card.popular .pricing-features li {
+            color: white;
+        }
+
+        .pricing-features li::before {
+            content: '✨';
+            font-size: 1.1rem;
+        }
+
+        .btn-pricing {
+            width: 100%;
+            padding: 1.1rem;
+            text-align: center;
+        }
+
+        /* FOOTER */
+        footer {
+            background: linear-gradient(135deg, var(--teal), #0d9488);
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--amber);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 3rem 1.5rem;
+            }
+
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+
+            .features-grid,
+            .testimonials-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.popular {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
+    <div class="bg-blob blob-3"></div>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <div class="logo-icon">✦</div>
+                AgendaPulse
+            </div>
+            <ul class="nav-links">
+                <li><a href="#features">Fonctionnalités</a></li>
+                <li><a href="#pricing">Tarifs</a></li>
+                <li><a href="#" class="btn btn-outline">Connexion</a></li>
+                <li><a href="#" class="btn btn-primary">Inscription</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                Nouvelle génération d'outils pro
+            </div>
+            <h1>
+                Votre activité <span class="gradient-text">simplifiée</span> et boostée
+            </h1>
+            <p>Gérez votre agenda, vos clients et vos finances avec une plateforme moderne qui allie puissance technologique et simplicité d'utilisation.</p>
+            <div class="hero-cta">
+                <a href="#" class="btn btn-primary">Essai gratuit 14 jours</a>
+                <a href="#pricing" class="btn btn-outline">Découvrir les tarifs</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="glass-card">
+                <div class="card-header">
+                    <h3 class="card-title">Tableau de bord</h3>
+                    <div class="card-icon">📊</div>
+                </div>
+                <div class="metrics-grid">
+                    <div class="metric">
+                        <div class="metric-label">Rendez-vous</div>
+                        <div class="metric-value">127</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Revenus</div>
+                        <div class="metric-value">8.3K€</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Clients</div>
+                        <div class="metric-value">48</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Satisfaction</div>
+                        <div class="metric-value">94%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="section-header">
+            <span class="section-tag">✨ Fonctionnalités</span>
+            <h2>Tout ce qu'il vous faut</h2>
+            <p>Des outils puissants et intuitifs pour gérer votre activité au quotidien</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon-box">👥</div>
+                <h3>CRM intelligent</h3>
+                <p>Gérez vos clients avec finesse. Historique complet, préférences, tags personnalisés et fidélisation automatique.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon-box">📅</div>
+                <h3>Calendrier smart</h3>
+                <p>Planification automatique, synchronisation multi-appareils et gestion des disponibilités en temps réel.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon-box">📱</div>
+                <h3>Rappels SMS</h3>
+                <p>Notifications automatiques par SMS et email. Réduisez vos absences de 80% sans effort.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon-box">💰</div>
+                <h3>Analytics finances</h3>
+                <p>Tableaux de bord visuels, insights automatiques et optimisation de votre rentabilité.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="section-header">
+            <span class="section-tag">💬 Témoignages</span>
+            <h2>Ils adorent AgendaPulse</h2>
+            <p>Découvrez pourquoi des centaines de professionnels nous font confiance</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">Interface magnifique et super intuitive ! J'ai gagné 10h par semaine sur la gestion administrative. Un vrai game-changer pour mon activité.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">JD</div>
+                    <div class="author-info">
+                        <h4>Julie Demont</h4>
+                        <p>Coach bien-être</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">Les rappels SMS ont transformé mon taux de présence. Plus d'oublis ! Et le support client est ultra réactif. Je recommande à 100%.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">TL</div>
+                    <div class="author-info">
+                        <h4>Thomas Leblanc</h4>
+                        <p>Ostéopathe</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">Exactement ce que je cherchais : puissant mais simple. Les analytics m'ont aidé à augmenter mes revenus de 35% en 3 mois !</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">CM</div>
+                    <div class="author-info">
+                        <h4>Céline Martin</h4>
+                        <p>Consultante RH</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="section-header">
+            <span class="section-tag">💎 Tarification</span>
+            <h2>Choisissez votre plan</h2>
+            <p>Des formules flexibles qui grandissent avec vous, sans engagement</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Starter</h3>
+                <div class="pricing-price">
+                    <span class="amount">1,90€</span>
+                    <span class="period">/mois</span>
+                </div>
+                <ul class="pricing-features">
+                    <li>Calendrier personnel</li>
+                    <li>Jusqu'à 20 clients</li>
+                    <li>Rappels email</li>
+                    <li>Support par email</li>
+                </ul>
+                <a href="#" class="btn btn-outline btn-pricing">Commencer</a>
+            </div>
+
+            <div class="pricing-card">
+                <h3>Solo</h3>
+                <div class="pricing-price">
+                    <span class="amount">9,90€</span>
+                    <span class="period">/mois</span>
+                </div>
+                <ul class="pricing-features">
+                    <li>Jusqu'à 50 clients</li>
+                    <li>SMS Pay-as-you-go</li>
+                    <li>CRM complet</li>
+                    <li>Stats de base</li>
+                    <li>Support prioritaire</li>
+                </ul>
+                <a href="#" class="btn btn-outline btn-pricing">Commencer</a>
+            </div>
+
+            <div class="pricing-card popular">
+                <span class="popular-badge">Populaire</span>
+                <h3>Pro</h3>
+                <div class="pricing-price">
+                    <span class="amount">19,90€</span>
+                    <span class="period">/mois</span>
+                </div>
+                <ul class="pricing-features">
+                    <li>Clients illimités</li>
+                    <li>SMS illimités</li>
+                    <li>Campagnes auto</li>
+                    <li>Stats avancées</li>
+                    <li>Support phone</li>
+                </ul>
+                <a href="#" class="btn btn-primary btn-pricing">Commencer</a>
+            </div>
+
+            <div class="pricing-card">
+                <h3>Multi</h3>
+                <div class="pricing-price">
+                    <span class="amount">59,90€</span>
+                    <span class="period">/mois</span>
+                </div>
+                <ul class="pricing-features">
+                    <li>Jusqu'à 5 utilisateurs</li>
+                    <li>Gestion d'équipe</li>
+                    <li>Calendrier partagé</li>
+                    <li>Dashboard consolidé</li>
+                    <li>Account manager</li>
+                </ul>
+                <a href="#" class="btn btn-outline btn-pricing">Commencer</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>AgendaPulse</h4>
+                <p style="color: rgba(255,255,255,0.8); line-height: 1.8;">La plateforme moderne pour gérer votre activité d'indépendant avec style et efficacité.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Solutions</h4>
+                <ul>
+                    <li><a href="#">Agenda digital</a></li>
+                    <li><a href="#">CRM intelligent</a></li>
+                    <li><a href="#">Rappels SMS</a></li>
+                    <li><a href="#">Gestion d'équipe</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Centre d'aide</a></li>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">Tarifs</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Entreprise</h4>
+                <ul>
+                    <li><a href="#">À propos</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Carrières</a></li>
+                    <li><a href="#">Mentions légales</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 AgendaPulse. Créé avec ❤️ pour les professionnels modernes.</p>
+        </div>
+    </footer>
+</body>
+</html>
