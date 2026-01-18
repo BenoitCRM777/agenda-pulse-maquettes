@@ -433,6 +433,154 @@
             line-height: 1.7;
         }
 
+        /* CATÉGORIES DE FEATURES - COULEURS PAR THÈME */
+        .feature-card.category-rdv .feature-icon {
+            background: linear-gradient(135deg, var(--cyan), #38bdf8);
+            box-shadow: 0 4px 12px rgba(6, 182, 212, 0.2);
+        }
+
+        .feature-card.category-pro .feature-icon {
+            background: linear-gradient(135deg, var(--sage), #a3e635);
+            box-shadow: 0 4px 12px rgba(132, 204, 22, 0.2);
+        }
+
+        .feature-card.category-optim .feature-icon {
+            background: linear-gradient(135deg, var(--terracotta), #ff8c42);
+            box-shadow: 0 4px 12px rgba(234, 88, 12, 0.2);
+        }
+
+        /* HOVER STATES PAR CATÉGORIE */
+        .feature-card.category-rdv:hover {
+            border-color: var(--cyan);
+            box-shadow: 0 12px 30px rgba(6, 182, 212, 0.15);
+        }
+
+        .feature-card.category-pro:hover {
+            border-color: var(--sage);
+            box-shadow: 0 12px 30px rgba(132, 204, 22, 0.15);
+        }
+
+        .feature-card.category-optim:hover {
+            border-color: var(--terracotta);
+            box-shadow: 0 12px 30px rgba(234, 88, 12, 0.15);
+        }
+
+        /* Animation delays pour 9 cards */
+        .feature-card:nth-child(5) { animation-delay: 0.5s; }
+        .feature-card:nth-child(6) { animation-delay: 0.6s; }
+        .feature-card:nth-child(7) { animation-delay: 0.7s; }
+        .feature-card:nth-child(8) { animation-delay: 0.8s; }
+        .feature-card:nth-child(9) { animation-delay: 0.9s; }
+
+        /* SCREENSHOTS SHOWCASE SECTION */
+        .screenshots-showcase {
+            padding: 6rem 2rem;
+            background: var(--neutral-light);
+        }
+
+        .screenshots-showcase .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .screenshots-showcase .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--slate);
+            margin-bottom: 1rem;
+        }
+
+        .screenshots-showcase .section-header p {
+            font-size: 1.125rem;
+            color: var(--neutral);
+            line-height: 1.7;
+        }
+
+        /* CAROUSEL CONTAINER - Inspiré de Maquette B */
+        .carousel-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .carousel-track {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            gap: 2rem;
+            padding: 1rem 0 3rem;
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .carousel-track::-webkit-scrollbar {
+            display: none; /* Chrome, Safari */
+        }
+
+        .carousel-slide {
+            min-width: 800px;
+            flex-shrink: 0;
+            scroll-snap-align: center;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(51, 65, 85, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .carousel-slide:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(234, 88, 12, 0.2);
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-bottom: 2px solid var(--neutral-light);
+        }
+
+        .carousel-caption {
+            padding: 2rem;
+        }
+
+        .carousel-caption h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--slate);
+            margin-bottom: 0.75rem;
+        }
+
+        .carousel-caption p {
+            color: var(--neutral);
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        /* CAROUSEL DOTS - Navigation */
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 2rem;
+        }
+
+        .carousel-dots .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--neutral);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .carousel-dots .dot:hover,
+        .carousel-dots .dot.active {
+            background: var(--terracotta);
+            transform: scale(1.2);
+        }
+
         /* TESTIMONIALS */
         .testimonials {
             padding: 6rem 2rem;
@@ -699,6 +847,14 @@
             .pricing-card.popular {
                 transform: scale(1);
             }
+
+            .carousel-slide {
+                min-width: 90vw;
+            }
+
+            .screenshots-showcase {
+                padding: 4rem 1rem;
+            }
         }
     </style>
 </head>
@@ -807,8 +963,8 @@ body {
 
     <section class="hero">
         <div class="hero-content">
-            <h1>La solution <span class="highlight">tout-en-un</span> pour les indépendants</h1>
-            <p>Gérez facilement votre agenda, vos clients et vos finances. Une plateforme pensée pour les thérapeutes, coachs et consultants qui veulent se concentrer sur l'essentiel.</p>
+            <h1>Toutes les <span class="highlight">fonctionnalités</span> dont vous avez besoin</h1>
+            <p>50+ fonctionnalités professionnelles pour gérer votre agenda, vos clients et vos finances. Conçu spécifiquement pour les professionnels indépendants, notre application vous offre tout ce dont vous avez besoin pour gérer votre pratique.</p>
             <div class="hero-cta">
                 <a href="#" class="btn btn-primary">Essai gratuit 14 jours</a>
                 <a href="#tarifs" class="btn btn-outline">Découvrir les tarifs</a>
@@ -844,32 +1000,176 @@ body {
 
     <section class="features" id="fonctionnalites">
         <div class="section-header">
-            <h2>Tout ce dont vous avez besoin</h2>
-            <p>Des outils professionnels pensés pour simplifier votre quotidien et développer votre activité</p>
+            <h2>Toutes nos fonctionnalités</h2>
+            <p>Découvrez l'ensemble de nos solutions pour optimiser la gestion de votre cabinet et améliorer l'expérience de vos clients.</p>
         </div>
         <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">👥</div>
-                <h3>CRM intelligent</h3>
-                <p>Gérez vos clients, leur historique, leurs préférences et fidélisez-les avec des outils dédiés.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📅</div>
-                <h3>Calendrier intelligent</h3>
-                <p>Planification automatique, synchronisation multi-appareils et gestion des disponibilités en temps réel.</p>
-            </div>
-            <div class="feature-card">
+            <!-- CATÉGORIE 1: Gestion des rendez-vous (CYAN) -->
+            <div class="feature-card category-rdv">
                 <div class="feature-icon">📱</div>
-                <h3>Rappels SMS</h3>
-                <p>Réduisez les absences avec des rappels automatiques par SMS et email personnalisables.</p>
+                <h3>Rappel SMS automatique</h3>
+                <p>Rappels automatiques par SMS 48h avant pour réduire les absences de 80%. Templates personnalisables et campagnes automatisées.</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">💰</div>
-                <h3>Gestion financière</h3>
-                <p>Suivez vos revenus, analysez vos performances et optimisez votre rentabilité en un coup d'œil.</p>
+
+            <div class="feature-card category-rdv">
+                <div class="feature-icon">✉️</div>
+                <h3>Modification RDV par email</h3>
+                <p>Vos clients peuvent confirmer, modifier ou annuler leurs rendez-vous directement depuis l'email de rappel. Workflow automatisé.</p>
+            </div>
+
+            <div class="feature-card category-rdv">
+                <div class="feature-icon">✓</div>
+                <h3>Workflow de confirmation professionnel</h3>
+                <p>Système complet de gestion : réservation en attente → confirmation manuelle → rappel automatique 48h avant. Multi-lieux et multi-salles.</p>
+            </div>
+
+            <!-- CATÉGORIE 2: Solutions professionnelles (SAGE) -->
+            <div class="feature-card category-pro">
+                <div class="feature-icon">📅</div>
+                <h3>3 types de calendriers intégrés</h3>
+                <p>Calendrier principal pour vos RDV professionnels, calendrier personnel pour gérer vos indisponibilités et congés, plus réservation en ligne publique.</p>
+            </div>
+
+            <div class="feature-card category-pro">
+                <div class="feature-icon">👥</div>
+                <h3>Gestion multi-praticiens</h3>
+                <p>Calendrier partagé entre 5 utilisateurs maximum, tableau de bord consolidé de l'équipe et gestion avancée des droits. Parfait pour les cabinets.</p>
+            </div>
+
+            <div class="feature-card category-pro">
+                <div class="feature-icon">👤</div>
+                <h3>CRM complet avec import CSV</h3>
+                <p>Grille moderne de clients avec avatars auto-générés, recherche intelligente, système de tags personnalisables, historique RDV et import CSV pour migration facile.</p>
+            </div>
+
+            <!-- CATÉGORIE 3: Optimisation (TERRACOTTA) -->
+            <div class="feature-card category-optim">
+                <div class="feature-icon">⏱️</div>
+                <h3>Analytics d'annulations uniques</h3>
+                <p>Rapports hebdomadaires, mensuels, trimestriels et annuels des annulations avec comparaisons automatiques vs période précédente. Export PDF et envoi par email.</p>
+            </div>
+
+            <div class="feature-card category-optim">
+                <div class="feature-icon">⚡</div>
+                <h3>Dashboard temps réel</h3>
+                <p>Visualisez vos 9+ RDV du jour avec statuts colorés, gérez les confirmations en attente et accédez rapidement au calendrier, clients et finances.</p>
+            </div>
+
+            <div class="feature-card category-optim">
+                <div class="feature-icon">🎁</div>
+                <h3>Cartes-cadeaux digitales</h3>
+                <p>Créez et vendez des cartes-cadeaux numériques avec codes uniques générés automatiquement. Suivi en temps réel de l'utilisation et du solde restant.</p>
             </div>
         </div>
     </section>
+
+    <!-- SCREENSHOTS SHOWCASE SECTION -->
+    <section class="screenshots-showcase">
+        <div class="section-header">
+            <h2>Découvrez l'interface en action</h2>
+            <p>Captures d'écran réelles de l'application Agenda Pulse utilisée quotidiennement par des professionnels de santé et du bien-être</p>
+        </div>
+
+        <div class="carousel-container">
+            <div class="carousel-track" id="screenshotsCarousel">
+                <!-- Slide 1: Dashboard -->
+                <div class="carousel-slide">
+                    <img
+                        src="assets/screenshots/dashboard-optimized.jpg"
+                        alt="Dashboard Agenda Pulse montrant 9 rendez-vous du jour et rapport d'annulations"
+                        loading="lazy"
+                        width="1200"
+                        height="1159"
+                    >
+                    <div class="carousel-caption">
+                        <h3>Tableau de bord temps réel</h3>
+                        <p>Visualisez vos 9 RDV du jour avec statuts colorés, gérez les confirmations en attente et consultez vos rapports d'annulations hebdomadaires avec comparaisons automatiques vs semaine précédente.</p>
+                    </div>
+                </div>
+
+                <!-- Slide 2: CRM -->
+                <div class="carousel-slide">
+                    <img
+                        src="assets/screenshots/crm-optimized.jpg"
+                        alt="CRM Agenda Pulse avec grille de 7 clients et statistiques en temps réel"
+                        loading="lazy"
+                        width="1200"
+                        height="632"
+                    >
+                    <div class="carousel-caption">
+                        <h3>CRM moderne avec grille visuelle</h3>
+                        <p>Grille de 7 clients avec avatars auto-générés, recherche intelligente (3 caractères minimum), tri alphabétique et statistiques en temps réel (email, téléphone, tags personnalisables).</p>
+                    </div>
+                </div>
+
+                <!-- Slide 3: Finances -->
+                <div class="carousel-slide">
+                    <img
+                        src="assets/screenshots/finances-optimized.jpg"
+                        alt="Gestion financière Agenda Pulse avec tableau de 40+ transactions et métriques"
+                        loading="lazy"
+                        width="1200"
+                        height="2435"
+                    >
+                    <div class="carousel-caption">
+                        <h3>Suivi financier complet et détaillé</h3>
+                        <p>Dashboard avec 4 métriques clés (605€ encaissé, 57€ solde, 40+ transactions), tableau détaillé avec statuts colorés (payé, en attente, annulé), alertes automatiques et export PDF mensuel.</p>
+                    </div>
+                </div>
+
+                <!-- Slide 4: Calendrier -->
+                <div class="carousel-slide">
+                    <img
+                        src="assets/screenshots/calendrier-optimized.jpg"
+                        alt="Calendrier Agenda Pulse avec vue mensuelle et gestion multi-salles"
+                        loading="lazy"
+                        width="1200"
+                        height="947"
+                    >
+                    <div class="carousel-caption">
+                        <h3>Calendriers multiples et flexibles</h3>
+                        <p>Calendrier principal pour RDV professionnels, calendrier personnel pour gérer vos congés et indisponibilités, plus réservation en ligne publique pour vos clients. Multi-salles (Salle Mauguio, Salle Palavas) et multi-adresses.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation dots -->
+            <div class="carousel-dots">
+                <div class="dot active" onclick="scrollToSlide(0)"></div>
+                <div class="dot" onclick="scrollToSlide(1)"></div>
+                <div class="dot" onclick="scrollToSlide(2)"></div>
+                <div class="dot" onclick="scrollToSlide(3)"></div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+    // Carousel navigation
+    function scrollToSlide(index) {
+        const carousel = document.getElementById('screenshotsCarousel');
+        const slideWidth = carousel.querySelector('.carousel-slide').offsetWidth + 32; // slide width + gap
+        carousel.scrollTo({
+            left: slideWidth * index,
+            behavior: 'smooth'
+        });
+
+        // Update active dot
+        document.querySelectorAll('.carousel-dots .dot').forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
+    }
+
+    // Update dots on manual scroll
+    document.getElementById('screenshotsCarousel').addEventListener('scroll', function() {
+        const carousel = this;
+        const slideWidth = carousel.querySelector('.carousel-slide').offsetWidth + 32;
+        const currentSlide = Math.round(carousel.scrollLeft / slideWidth);
+
+        document.querySelectorAll('.carousel-dots .dot').forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentSlide);
+        });
+    });
+    </script>
 
     <section class="testimonials">
         <div class="section-header">
@@ -944,6 +1244,7 @@ body {
                     <li>Jusqu'à 50 clients</li>
                     <li>SMS Pay-as-you-go</li>
                     <li>CRM complet</li>
+                    <li>Import CSV clients</li>
                     <li>Statistiques de base</li>
                     <li>Support prioritaire</li>
                 </ul>
@@ -961,6 +1262,8 @@ body {
                     <li>Clients illimités</li>
                     <li>SMS illimités</li>
                     <li>Campagnes automatisées</li>
+                    <li>Cartes-cadeaux digitales</li>
+                    <li>Rapports d'annulations avancés</li>
                     <li>Statistiques avancées</li>
                     <li>Support téléphonique</li>
                 </ul>
@@ -994,10 +1297,19 @@ body {
             <div class="footer-section">
                 <h4>Solutions</h4>
                 <ul>
-                    <li><a href="#">Agenda numérique</a></li>
-                    <li><a href="#">CRM indépendants</a></li>
-                    <li><a href="#">Rappels SMS</a></li>
-                    <li><a href="#">Gestion d'équipe</a></li>
+                    <li><a href="#fonctionnalites">3 types de calendriers</a></li>
+                    <li><a href="#fonctionnalites">CRM avec import CSV</a></li>
+                    <li><a href="#fonctionnalites">Rappels SMS automatiques</a></li>
+                    <li><a href="#fonctionnalites">Gestion multi-praticiens</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Optimisation</h4>
+                <ul>
+                    <li><a href="#fonctionnalites">Dashboard temps réel</a></li>
+                    <li><a href="#fonctionnalites">Analytics d'annulations</a></li>
+                    <li><a href="#fonctionnalites">Cartes cadeaux digitales</a></li>
+                    <li><a href="#fonctionnalites">Gestion du temps</a></li>
                 </ul>
             </div>
             <div class="footer-section">
